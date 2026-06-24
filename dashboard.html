@@ -118,6 +118,14 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 .legend-pills { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 .legend-pill { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted); }
 .legend-pill-dot { width:9px; height:9px; border-radius:50%; }
+
+/* TOGGLE */
+.chart-title-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.chart-title-row .chart-title { margin-bottom:0; }
+.toggle-group { display:flex; gap:2px; background:var(--bg); border-radius:7px; padding:2px; }
+.toggle-btn { padding:4px 11px; border:none; background:transparent; color:var(--muted); font-size:11px; font-weight:600; border-radius:5px; cursor:pointer; transition:background .15s,color .15s; }
+.toggle-btn:hover { color:var(--text); }
+.toggle-btn.active { background:var(--surface2); color:var(--text); }
 </style>
 </head>
 <body>
@@ -194,6 +202,35 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
         <div class="chart-wrap short"><canvas id="run-cadence"></canvas></div>
       </div>
     </div>
+
+    <div class="charts-grid full">
+      <div class="chart-card">
+        <div class="chart-title-row">
+          <div class="chart-title"><span class="dot" style="background:var(--accent)"></span>Avg Pace Trend (min/km)</div>
+          <div class="toggle-group">
+            <button class="toggle-btn active" onclick="setPacePeriod('week',this)">Week</button>
+            <button class="toggle-btn" onclick="setPacePeriod('month',this)">Month</button>
+            <button class="toggle-btn" onclick="setPacePeriod('year',this)">Year</button>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="run-pace-trend"></canvas></div>
+      </div>
+    </div>
+
+    <div class="charts-grid full">
+      <div class="chart-card">
+        <div class="chart-title-row">
+          <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Total Distance (km)</div>
+          <div class="toggle-group">
+            <button class="toggle-btn active" onclick="setDistPeriod('week',this)">Week</button>
+            <button class="toggle-btn" onclick="setDistPeriod('month',this)">Month</button>
+            <button class="toggle-btn" onclick="setDistPeriod('year',this)">Year</button>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="run-dist-trend"></canvas></div>
+      </div>
+    </div>
+
     <div class="table-card">
       <div class="table-header">
         <span class="table-header-title">📋 All Runs</span>
@@ -374,6 +411,91 @@ function statCards(id, items) {
     </div>`).join('');
 }
 
+// ─── PACE & DISTANCE TREND HELPERS ───────────────────────────────────────────
+let _trendRuns = [];
+let _pacePeriod = 'week';
+let _distPeriod = 'week';
+
+function periodKey(str, period) {
+  if (period === 'week')  return weekKey(str);
+  if (period === 'month') return monthKey(str);
+  return str.slice(0,4);
+}
+
+function periodLabel(key, period) {
+  if (period === 'week') {
+    const d = new Date(key);
+    return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})} '${String(d.getFullYear()).slice(2)}`;
+  }
+  if (period === 'month') {
+    const [y,m] = key.split('-');
+    return `${new Date(+y,+m-1).toLocaleString('en',{month:'short'})} '${y.slice(2)}`;
+  }
+  return key;
+}
+
+function renderPaceTrend(runs, period) {
+  const map = {};
+  runs.forEach(r => {
+    const ps = paceSeconds(r.distance, r.duration);
+    if (!ps || ps > 600 || ps < 180 || r.distance < 1000) return;
+    const k = periodKey(r.startTimeLocal, period);
+    if (!map[k]) map[k] = { sum:0, n:0, min:ps };
+    map[k].sum += ps; map[k].n++;
+    if (ps < map[k].min) map[k].min = ps;
+  });
+  const keys = Object.keys(map).sort();
+  mk('run-pace-trend', {
+    type: 'line',
+    data: { labels: keys.map(k => periodLabel(k, period)), datasets: [
+      { label:'Avg Pace', data: keys.map(k => +(map[k].sum/map[k].n/60).toFixed(3)),
+        borderColor:'#00d4aa', backgroundColor:'rgba(0,212,170,.09)', borderWidth:2,
+        pointRadius:3, pointBackgroundColor:'#00d4aa', tension:.4, fill:true },
+      { label:'Best Pace', data: keys.map(k => +(map[k].min/60).toFixed(3)),
+        borderColor:'rgba(0,212,170,.4)', borderDash:[4,3], borderWidth:1.5,
+        pointRadius:0, tension:.4, fill:false },
+    ]},
+    options: { responsive:true, maintainAspectRatio:false, animation:{duration:350},
+      plugins:{ legend:{ display:true, position:'top', labels:{boxWidth:9,padding:10} },
+        tooltip:{ callbacks:{ label: ctx => ` ${fmtSecs(ctx.raw*60)} /km` } } },
+      scales:{ x: ax({ ticks:{maxTicksLimit:20,padding:5} }),
+               y: ax({ reverse:true, ticks:{ padding:5, callback: v => fmtSecs(v*60) } }) }
+    }
+  });
+}
+
+function renderDistTrend(runs, period) {
+  const map = {};
+  runs.forEach(r => { const k = periodKey(r.startTimeLocal, period); map[k]=(map[k]||0)+(r.distance||0)/1000; });
+  const keys = Object.keys(map).sort();
+  mk('run-dist-trend', {
+    type: 'bar',
+    data: { labels: keys.map(k => periodLabel(k, period)), datasets: [{
+      label:'Distance (km)', data: keys.map(k => +map[k].toFixed(1)),
+      backgroundColor:'rgba(124,106,247,.65)', borderRadius:4,
+    }]},
+    options: { responsive:true, maintainAspectRatio:false, animation:{duration:350},
+      plugins:{ legend:{display:false} },
+      scales:{ x: ax({ ticks:{maxTicksLimit:20,padding:5} }),
+               y: ax({ ticks:{ padding:5, callback:v=>`${v}km` } }) }
+    }
+  });
+}
+
+function setPacePeriod(period, btn) {
+  _pacePeriod = period;
+  btn.closest('.toggle-group').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPaceTrend(_trendRuns, period);
+}
+
+function setDistPeriod(period, btn) {
+  _distPeriod = period;
+  btn.closest('.toggle-group').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDistTrend(_trendRuns, period);
+}
+
 // ─── OVERVIEW ─────────────────────────────────────────────────────────────────
 function renderOverview(acts) {
   const runs    = acts.filter(a => RUNNING_TYPES.has(a.activityType));
@@ -447,6 +569,7 @@ function renderOverview(acts) {
 function renderRunning(acts) {
   const runs = acts.filter(a => RUNNING_TYPES.has(a.activityType))
                    .sort((a,b) => a.startTimeLocal.localeCompare(b.startTimeLocal));
+  _trendRuns = runs;
 
   const totalKm = runs.reduce((s,a)=>s+(a.distance||0),0)/1000;
   const shortRuns = runs.filter(a=>a.distance>3000 && a.distance<9000);
@@ -512,6 +635,10 @@ function renderRunning(acts) {
     [{ label:'spm', data:cadRuns.map(r=>Math.round(r.averageRunningCadenceInStepsPerMinute)), backgroundColor:'rgba(232,121,249,.6)', borderRadius:3 }],
     { scales:{ x:ax({ticks:{maxTicksLimit:20,padding:5}}), y:ax({min:150,ticks:{padding:5}}) } }
   );
+
+  // Pace & distance trends (default to week)
+  renderPaceTrend(runs, _pacePeriod);
+  renderDistTrend(runs, _distPeriod);
 
   // Table (newest first)
   document.getElementById('run-table').innerHTML = [...runs].reverse().map(r => {

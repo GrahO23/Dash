@@ -168,6 +168,33 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 .compare-row .cr-pb { font-weight:700; }
 .cr-best { color:var(--accent); }
 
+/* SETTINGS */
+.settings-section { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:18px; }
+.settings-section h3 { font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+.settings-section h3 .dot { width:7px; height:7px; border-radius:50%; display:inline-block; }
+.setting-row { display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--border); }
+.setting-row:last-child { border-bottom:none; padding-bottom:0; }
+.setting-row:first-of-type { padding-top:0; }
+.setting-info { flex:1; }
+.setting-label { font-size:14px; font-weight:600; margin-bottom:3px; }
+.setting-desc { font-size:12px; color:var(--muted); }
+.setting-control { display:flex; align-items:center; gap:8px; margin-left:24px; flex-shrink:0; }
+.settings-btn { padding:8px 16px; border:1px solid var(--border); background:var(--surface2); color:var(--text); border-radius:7px; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; white-space:nowrap; }
+.settings-btn:hover { border-color:var(--accent); color:var(--accent); }
+.settings-btn.primary { background:var(--accent); border-color:var(--accent); color:#0f1117; }
+.settings-btn.primary:hover { opacity:.85; }
+.settings-btn.danger { border-color:rgba(248,113,113,.4); color:var(--danger); background:rgba(248,113,113,.08); }
+.settings-btn.danger:hover { background:rgba(248,113,113,.18); }
+.settings-btn:disabled { opacity:.4; cursor:not-allowed; }
+.sync-option-group { display:flex; gap:6px; flex-wrap:wrap; }
+.sync-opt { padding:6px 14px; border:1px solid var(--border); background:transparent; color:var(--muted); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; }
+.sync-opt:hover { color:var(--text); border-color:var(--muted); }
+.sync-opt.active { background:var(--accent); border-color:var(--accent); color:#0f1117; }
+.status-pill { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:600; }
+.status-pill.ok { background:rgba(0,212,170,.15); color:var(--accent); }
+.status-pill.info { background:rgba(124,106,247,.15); color:var(--accent2); }
+#settings-log { font-size:11px; color:var(--muted); margin-top:10px; min-height:18px; }
+
 /* RANGE BAR */
 .range-bar { display:flex; align-items:center; gap:6px; margin-bottom:22px; }
 .range-bar span { font-size:11px; color:var(--muted); font-weight:600; margin-right:4px; text-transform:uppercase; letter-spacing:.6px; }
@@ -195,6 +222,7 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
   <div class="tab" data-tab="strength">Strength</div>
   <div class="tab" data-tab="cycling">Cycling</div>
   <div class="tab" data-tab="po10">⚡ Power of 10</div>
+  <div class="tab" data-tab="settings">⚙ Settings</div>
 </div>
 
 <main>
@@ -361,6 +389,73 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
       </tr></thead><tbody id="cyc-table"></tbody></table></div>
     </div>
   </div>
+  <!-- SETTINGS -->
+  <div class="tab-panel" id="panel-settings">
+
+    <!-- Garmin Sync -->
+    <div class="settings-section">
+      <h3><span class="dot" style="background:var(--accent)"></span>Garmin Sync</h3>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-label">Quick Sync</div>
+          <div class="setting-desc">Fetch the most recent activities. Used by the Sync button in the header.</div>
+        </div>
+        <div class="setting-control">
+          <div class="sync-option-group" id="quickSyncOpts">
+            <button class="sync-opt" onclick="setQuickSync(5,this)">5</button>
+            <button class="sync-opt active" onclick="setQuickSync(10,this)">10</button>
+            <button class="sync-opt" onclick="setQuickSync(25,this)">25</button>
+            <button class="sync-opt" onclick="setQuickSync(50,this)">50</button>
+          </div>
+          <button class="settings-btn primary" onclick="triggerSync(quickSyncLimit)">Sync now</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-label">Import All Activities</div>
+          <div class="setting-desc">Fetch your complete Garmin history. Currently <span id="settings-activity-count" class="status-pill info">—</span> activities loaded.</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn danger" onclick="triggerImportAll()" id="importAllBtn">Import All</button>
+        </div>
+      </div>
+
+      <div id="settings-log"></div>
+    </div>
+
+    <!-- Power of 10 -->
+    <div class="settings-section">
+      <h3><span class="dot" style="background:var(--accent2)"></span>Power of 10 Athletes</h3>
+      <div id="settings-po10-list"></div>
+      <div class="setting-row" style="border-top:1px solid var(--border);margin-top:14px;padding-top:14px">
+        <div class="setting-info">
+          <div class="setting-label">Add Athlete</div>
+          <div class="setting-desc">Paste a Power of 10 profile URL or GUID</div>
+        </div>
+        <div class="setting-control">
+          <input id="settings-po10-input" type="text" placeholder="URL or GUID…"
+            style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:7px 12px;color:var(--text);font-size:12px;outline:none;width:280px"
+            onkeydown="if(event.key==='Enter')settingsPo10Add()">
+          <button class="settings-btn primary" onclick="settingsPo10Add()">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="settings-section">
+      <h3><span class="dot" style="background:var(--accent3)"></span>About</h3>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-label">TrackRecord</div>
+          <div class="setting-desc">Garmin activity dashboard with Power of 10 integration · <a href="https://github.com/GrahO23/Dash" target="_blank" style="color:var(--accent);text-decoration:none">github.com/GrahO23/Dash ↗</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <!-- POWER OF 10 -->
   <div class="tab-panel" id="panel-po10">
 
@@ -969,6 +1064,8 @@ function render(data) {
     `Synced ${fmtDate(data.fetched_at)} · ${synced.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}<br>
      <span style="opacity:.6">${acts.length} activities total</span>`;
 
+  const countEl = document.getElementById('settings-activity-count');
+  if (countEl) countEl.textContent = `${allActivities.length} activities`;
   document.getElementById('loadingState').style.display = 'none';
   document.querySelectorAll('.tab-panel').forEach(p => p.style.display = p.id === 'panel-overview' ? 'block' : 'none');
   document.querySelectorAll('.tab-panel.active').forEach(p => { if (p.id !== 'panel-overview') p.classList.remove('active'); });
@@ -986,6 +1083,98 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 // ─── LOAD & REFRESH ───────────────────────────────────────────────────────────
+// ─── SETTINGS ────────────────────────────────────────────────────────────────
+let quickSyncLimit = 10;
+
+function setQuickSync(n, btn) {
+  quickSyncLimit = n;
+  document.querySelectorAll('#quickSyncOpts .sync-opt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderSettingsPo10() {
+  const el = document.getElementById('settings-po10-list');
+  if (!po10Athletes.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:8px 0">No athletes added yet.</div>';
+    return;
+  }
+  el.innerHTML = po10Athletes.map((a, i) => `
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label" style="color:${PO10_COLORS[i%PO10_COLORS.length]}">${a.name}</div>
+        <div class="setting-desc">${a.club} · <a href="https://www.powerof10.uk/Home/Athlete/${a.guid}" target="_blank" style="color:var(--accent);text-decoration:none">View on PO10 ↗</a></div>
+      </div>
+      <div class="setting-control">
+        <button class="settings-btn" onclick="settingsPo10Refresh('${a.guid}')">↻ Refresh</button>
+        <button class="settings-btn danger" onclick="settingsPo10Remove('${a.guid}')">Remove</button>
+      </div>
+    </div>`).join('');
+}
+
+async function settingsPo10Add() {
+  const input = document.getElementById('settings-po10-input');
+  const val = input.value.trim();
+  if (!val) return;
+  setSettingsLog('Adding…');
+  try {
+    const res = await fetch('/po10/add', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:val})});
+    const j = await res.json();
+    if (!j.ok) throw new Error(j.error);
+    po10Athletes = j.athletes;
+    await loadPo10Data(j.athlete.guid);
+    input.value = '';
+    renderPo10Switcher();
+    renderSettingsPo10();
+    setSettingsLog(`✓ Added ${j.athlete.profile?.name}`);
+    showToast(`✓ Added ${j.athlete.profile?.name}`, 'ok');
+  } catch(e) {
+    setSettingsLog(`✗ ${e.message}`);
+    showToast(`✗ ${e.message}`, 'err');
+  }
+}
+
+async function settingsPo10Refresh(guid) {
+  setSettingsLog('Refreshing…');
+  const res = await fetch('/po10/refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({guid})});
+  const j = await res.json();
+  if (j.ok) { po10Data[guid]=j.athlete; if(po10ActiveGuid===guid) renderPo10Detail(guid); setSettingsLog('✓ Refreshed'); showToast('✓ Refreshed','ok'); }
+  else { setSettingsLog(`✗ ${j.error}`); showToast(`✗ ${j.error}`,'err'); }
+}
+
+async function settingsPo10Remove(guid) {
+  const res = await fetch('/po10/remove',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({guid})});
+  const j = await res.json();
+  po10Athletes = j.athletes;
+  delete po10Data[guid];
+  if (po10ActiveGuid===guid) po10ActiveGuid = po10Athletes[0]?.guid||null;
+  renderPo10Switcher();
+  renderSettingsPo10();
+  if (po10ActiveGuid) setActivePo10(po10ActiveGuid);
+  showToast('Athlete removed','ok');
+}
+
+function setSettingsLog(msg) {
+  const el = document.getElementById('settings-log');
+  if (el) el.textContent = msg;
+}
+
+async function triggerSync(limit) {
+  setSettingsLog(`Syncing last ${limit} activities…`);
+  await doRefresh(limit);
+  setSettingsLog(`✓ Synced last ${limit} activities`);
+}
+
+async function triggerImportAll() {
+  const btn = document.getElementById('importAllBtn');
+  btn.disabled = true;
+  btn.textContent = 'Importing…';
+  setSettingsLog('Fetching all activities — this may take a minute…');
+  await doRefresh('all');
+  btn.disabled = false;
+  btn.textContent = 'Import All';
+  setSettingsLog(`✓ Full import complete`);
+}
+
 async function loadData() {
   try {
     const res = await fetch('/activities.json');
@@ -1002,16 +1191,18 @@ async function loadData() {
   }
 }
 
-async function doRefresh() {
+async function doRefresh(limit) {
+  limit = limit ?? quickSyncLimit;
   const btn = document.getElementById('refreshBtn');
   btn.disabled=true; btn.classList.add('spinning');
+  const label = limit==='all' ? 'all' : `last ${limit}`;
   btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.29"/></svg> Syncing…`;
   try {
-    const res  = await fetch('/refresh', {method:'POST'});
+    const res  = await fetch('/refresh', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({limit})});
     const json = await res.json();
     if (!json.ok) throw new Error(json.error||'Unknown error');
     render(json.data);
-    showToast('✓ Synced 500 activities from Garmin Connect', 'ok');
+    showToast(`✓ Synced ${label} activities from Garmin`, 'ok');
   } catch(e) {
     showToast(`✗ ${e.message}`, 'err');
   } finally {
@@ -1049,7 +1240,8 @@ async function loadPo10Athletes() {
       renderPo10Switcher();
       setActivePo10(po10Athletes[0].guid);
     }
-  } catch(e) { /* no athletes yet */ }
+    renderSettingsPo10();
+  } catch(e) { renderSettingsPo10(); }
 }
 
 async function loadPo10Data(guid) {

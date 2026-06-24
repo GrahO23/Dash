@@ -68,7 +68,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         body = json.loads(self.rfile.read(length)) if length else {}
 
         if p.path == "/refresh":
-            self._refresh_garmin()
+            self._refresh_garmin(body.get("limit", 10))
 
         elif p.path == "/po10/add":
             self._po10_add(body.get("url", ""))
@@ -99,9 +99,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    def _refresh_garmin(self):
-        print("\n  → Syncing Garmin …")
-        r = _run("fetch_activities.py", "all", timeout=300)
+    def _refresh_garmin(self, limit=10):
+        arg = "all" if limit == "all" else str(int(limit))
+        label = "all activities" if arg == "all" else f"last {arg} activities"
+        print(f"\n  → Syncing Garmin ({label}) …")
+        r = _run("fetch_activities.py", arg, timeout=300)
         print(f"  → {r['stdout'][-80:]}")
         if r["ok"]:
             p = BASE / "activities.json"

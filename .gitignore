@@ -2,5 +2,6 @@
 .garmin_tokens
 .venv/
 activities.json
+po10_*.json
 __pycache__/
 *.pyc

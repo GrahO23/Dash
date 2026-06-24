@@ -79,34 +79,48 @@ def extract_profile(src: str) -> dict:
     if club:
         profile["club"] = club.group(1).strip()
 
-    for label, pat in {
-        "age_group": r"V\d{2}",
-        "county":    r"<strong>(Essex|[A-Z][a-z]+ ?[A-Z]?[a-z]*)</strong>",
-    }.items():
-        m = re.search(pat, src)
-        if m:
-            profile[label] = m.group(0 if label == "age_group" else 1)
+    m = re.search(r"V\d{2}", src)
+    if m:
+        profile["age_group"] = m.group(0)
 
-    for label, pat in {
-        "rank_uk":     r"UK Overall[^\d]*(\d[\d,]+)",
-        "rank_gender": r"UK (?:Men|Women)[^\d]*(\d[\d,]+)",
-        "rank_ag":     r"UK (V\d\d[MF])[^\d]*(\d[\d,]+)",
-        "handicap":    r"Handicap[^\d]*(\d+\.\d)",
-    }.items():
-        m = re.search(pat, src)
-        if m:
-            if label == "rank_ag":
-                profile["rank_ag_label"] = m.group(1)   # e.g. "V45F"
-                profile["rank_ag"] = m.group(2)
-            else:
-                profile[label] = m.group(1)
+    # County: appears as a bare <strong> tag containing a county/region name
+    # Exclude gender words (Men/Women) that also appear in <strong> tags
+    county_m = re.search(r"<strong>(?!Men\b|Women\b)([A-Z][a-zA-Z &]+)</strong>", src)
+    if county_m:
+        profile["county"] = county_m.group(1).strip()
 
-    # Derive gender from age-group label or page text
-    ag = profile.get("rank_ag_label", "")
-    if ag.endswith("F") or re.search(r"\bWomen\b", src):
-        profile["gender"] = "Women"
-    elif ag.endswith("M") or re.search(r"\bMen\b", src):
-        profile["gender"] = "Men"
+    # Age-group rank: matches V45M, V45F, U20M, U20W, U17M, U17W etc.
+    ag_m = re.search(r"UK ([VU]\d+([MFW]))[^\d]{0,10}(\d[\d,]+)", src)
+    if ag_m:
+        ag_label = ag_m.group(1)              # e.g. "V45F" or "U20M"
+        gender_code = ag_m.group(2)           # M / F / W
+        profile["rank_ag_label"] = ag_label
+        profile["rank_ag"]       = ag_m.group(3)
+        profile["gender"]        = "Women" if gender_code in ("F", "W") else "Men"
+
+    # Fallback gender from "UK Men" / "UK Women" in the carousel
+    if not profile.get("gender"):
+        if re.search(r"UK Women[^\d]{0,10}\d", src):
+            profile["gender"] = "Women"
+        elif re.search(r"UK Men[^\d]{0,10}\d", src):
+            profile["gender"] = "Men"
+
+    # Gender rank
+    gender = profile.get("gender", "")
+    if gender:
+        gm = re.search(rf"UK {gender}[^\d]{{0,10}}(\d[\d,]+)", src)
+        if gm:
+            profile["rank_gender"] = gm.group(1)
+
+    # Overall UK rank
+    m = re.search(r"UK Overall[^\d]{0,10}(\d[\d,]+)", src)
+    if m:
+        profile["rank_uk"] = m.group(1)
+
+    # Handicap
+    m = re.search(r"Handicap[^\d]*(\d+\.\d)", src)
+    if m:
+        profile["handicap"] = m.group(1)
 
     return profile
 

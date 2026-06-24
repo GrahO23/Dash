@@ -88,13 +88,25 @@ def extract_profile(src: str) -> dict:
             profile[label] = m.group(0 if label == "age_group" else 1)
 
     for label, pat in {
-        "rank_uk":  r"UK Overall[^\d]*(\d[\d,]+)",
-        "rank_v45": r"UK V\d\dM[^\d]*(\d[\d,]+)",
-        "handicap": r"Handicap[^\d]*(\d+\.\d)",
+        "rank_uk":     r"UK Overall[^\d]*(\d[\d,]+)",
+        "rank_gender": r"UK (?:Men|Women)[^\d]*(\d[\d,]+)",
+        "rank_ag":     r"UK (V\d\d[MF])[^\d]*(\d[\d,]+)",
+        "handicap":    r"Handicap[^\d]*(\d+\.\d)",
     }.items():
         m = re.search(pat, src)
         if m:
-            profile[label] = m.group(1)
+            if label == "rank_ag":
+                profile["rank_ag_label"] = m.group(1)   # e.g. "V45F"
+                profile["rank_ag"] = m.group(2)
+            else:
+                profile[label] = m.group(1)
+
+    # Derive gender from age-group label or page text
+    ag = profile.get("rank_ag_label", "")
+    if ag.endswith("F") or re.search(r"\bWomen\b", src):
+        profile["gender"] = "Women"
+    elif ag.endswith("M") or re.search(r"\bMen\b", src):
+        profile["gender"] = "Men"
 
     return profile
 

@@ -1281,16 +1281,17 @@ function renderPo10Detail(guid) {
 
   document.getElementById('po10-name').textContent = p.name || 'Unknown';
   document.getElementById('po10-meta').textContent =
-    [p.club, p.age_group, p.county].filter(Boolean).join(' · ');
+    [p.club, p.age_group, p.gender, p.county].filter(Boolean).join(' · ');
   document.getElementById('po10-link').href = d.url || '#';
   document.getElementById('po10-refresh-btn').dataset.guid = guid;
   document.getElementById('po10-remove-btn').dataset.guid = guid;
 
   // Rankings
   document.getElementById('po10-ranks').innerHTML = [
-    p.rank_uk  ? { v: p.rank_uk,  l: 'UK Overall' } : null,
-    p.rank_v45 ? { v: p.rank_v45, l: `UK ${p.age_group||'AG'}` } : null,
-    p.handicap ? { v: p.handicap, l: 'Handicap' } : null,
+    p.rank_uk     ? { v: p.rank_uk,     l: 'UK Overall' } : null,
+    p.rank_gender ? { v: p.rank_gender, l: `UK ${p.gender||'Gender'}` } : null,
+    p.rank_ag     ? { v: p.rank_ag,     l: `UK ${p.rank_ag_label||p.age_group||'AG'}` } : null,
+    p.handicap    ? { v: p.handicap,    l: 'Handicap' } : null,
   ].filter(Boolean).map(r => `
     <div class="po10-rank-pill">
       <div class="rpv">${r.v}</div>

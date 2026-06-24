@@ -1,0 +1,1778 @@
+{
+  "guid": "a8ca9561-c3fd-4399-95e7-a2b970a945fa",
+  "url": "https://www.powerof10.uk/Home/Athlete/a8ca9561-c3fd-4399-95e7-a2b970a945fa",
+  "fetched_at": "2026-06-24T10:51:12.610144",
+  "profile": {
+    "name": "Zoe Oldfield",
+    "club": "Loughton AC",
+    "age_group": "V45",
+    "county": "Women",
+    "rank_uk": "2518"
+  },
+  "events": [
+    {
+      "event": "5 Miles",
+      "code": "5M",
+      "is_field": false,
+      "pb_raw": "178300",
+      "pb": "29:43",
+      "results": [
+        {
+          "date": "01/02/2025",
+          "perf_raw": "179000",
+          "perf": "29:50",
+          "meeting": "Chingford League 5",
+          "venue": "Victoria Park",
+          "position": "72",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/02/2023",
+          "perf_raw": "186200",
+          "perf": "31:02",
+          "meeting": "Chingford League 5",
+          "venue": "Victoria Park",
+          "position": "89",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "05/02/2022",
+          "perf_raw": "201000",
+          "perf": "33:30",
+          "meeting": "Chingford League 5",
+          "venue": "Victoria Park",
+          "position": "140",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/05/2023",
+          "perf_raw": "184900",
+          "perf": "30:49",
+          "meeting": "Veterans AC 5 Championships",
+          "venue": "Battersea Park",
+          "position": "36",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/08/2024",
+          "perf_raw": "182100",
+          "perf": "30:21",
+          "meeting": "Ingatestone 5",
+          "venue": "Ingatestone",
+          "position": "38",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/06/2025",
+          "perf_raw": "180900",
+          "perf": "30:09",
+          "meeting": "Springfield Striders Friday...",
+          "venue": "Pleshey",
+          "position": "41",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "31/01/2026",
+          "perf_raw": "178300",
+          "perf": "29:43",
+          "meeting": "Chingford League 5",
+          "venue": "Victoria Park",
+          "position": "66",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "5K",
+      "code": "5K",
+      "is_field": false,
+      "pb_raw": "107300",
+      "pb": "17:53",
+      "results": [
+        {
+          "date": "01/08/2023",
+          "perf_raw": "110200",
+          "perf": "18:22",
+          "meeting": "Veterans AC 5K",
+          "venue": "Battersea Park",
+          "position": "37",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "01/12/2024",
+          "perf_raw": "109300",
+          "perf": "18:13",
+          "meeting": "British Masters 5K Champion...",
+          "venue": "Battersea Park",
+          "position": "78",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "03/12/2023",
+          "perf_raw": "108400",
+          "perf": "18:04",
+          "meeting": "British Masters 5K Champion...",
+          "venue": "Battersea Park",
+          "position": "71",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/04/2023",
+          "perf_raw": "111500",
+          "perf": "18:35",
+          "meeting": "Veterans AC 5K",
+          "venue": "Battersea Park",
+          "position": "44",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/10/2023",
+          "perf_raw": "112900",
+          "perf": "18:49",
+          "meeting": "Chingford League 5K",
+          "venue": "Lee Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/06/2023",
+          "perf_raw": "112700",
+          "perf": "18:47",
+          "meeting": "Veterans AC 5K Championships",
+          "venue": "Battersea Park",
+          "position": "37",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/10/2025",
+          "perf_raw": "110700",
+          "perf": "18:27",
+          "meeting": "Velopark 5k and for U11/13s...",
+          "venue": "Velopark",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/11/2023",
+          "perf_raw": "114000",
+          "perf": "19:00",
+          "meeting": "Chingford League 5K",
+          "venue": "Hog Hill",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/04/2025",
+          "perf_raw": "108000",
+          "perf": "18:00",
+          "meeting": "Veterans AC 5K",
+          "venue": "Battersea Park",
+          "position": "23",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/08/2025",
+          "perf_raw": "109900",
+          "perf": "18:19",
+          "meeting": "Colchester Friday Night Runs",
+          "venue": "Colchester",
+          "position": "22",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/10/2024",
+          "perf_raw": "115200",
+          "perf": "19:12",
+          "meeting": "Chingford League 5K",
+          "venue": "Hog Hill",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/08/2024",
+          "perf_raw": "111800",
+          "perf": "18:38",
+          "meeting": "Colchester Friday Night Runs",
+          "venue": "Colchester",
+          "position": "90",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/08/2024",
+          "perf_raw": "111800",
+          "perf": "18:38",
+          "meeting": "Colchester Friday Night Runs",
+          "venue": "Colchester",
+          "position": "159",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "10/12/2025",
+          "perf_raw": "111700",
+          "perf": "18:37",
+          "meeting": "Chingford League 5K",
+          "venue": "Lee Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "11/08/2023",
+          "perf_raw": "111300",
+          "perf": "18:33",
+          "meeting": "Colchester Friday Night Runs",
+          "venue": "Colchester",
+          "position": "124",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "11/12/2024",
+          "perf_raw": "110400",
+          "perf": "18:24",
+          "meeting": "Chingford League 5K",
+          "venue": "Lee Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "12/10/2022",
+          "perf_raw": "119200",
+          "perf": "19:52",
+          "meeting": "Chingford League",
+          "venue": "Lee Valley",
+          "position": "10",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "15/04/2022",
+          "perf_raw": "117100",
+          "perf": "19:31",
+          "meeting": "RunThrough Victoria Park 5K",
+          "venue": "London Victoria Park",
+          "position": "8",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/03/2025",
+          "perf_raw": "108700",
+          "perf": "18:07",
+          "meeting": "Debden 5K / 10K",
+          "venue": "Saffron Walden",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "17/05/2025",
+          "perf_raw": "108700",
+          "perf": "18:07",
+          "meeting": "Shrewsbury 5K Festival",
+          "venue": "Shrewsbury",
+          "position": "99",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/03/2023",
+          "perf_raw": "114000",
+          "perf": "19:00",
+          "meeting": "RunThrough Victoria Park",
+          "venue": "London Victoria Park",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/12/2025",
+          "perf_raw": "108700",
+          "perf": "18:07",
+          "meeting": "Serpentine Last Friday of t...",
+          "venue": "London",
+          "position": "-",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "21/06/2022",
+          "perf_raw": "121300",
+          "perf": "20:13",
+          "meeting": "East End Road Runners Olymp...",
+          "venue": "London",
+          "position": "56",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/07/2024",
+          "perf_raw": "113200",
+          "perf": "18:52",
+          "meeting": "Standard Chartered Great Ci...",
+          "venue": "London",
+          "position": "163",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "24/04/2026",
+          "perf_raw": "107700",
+          "perf": "17:57",
+          "meeting": "Serpentine Last Friday of t...",
+          "venue": "London Hyde Park",
+          "position": "19",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "27/06/2023",
+          "perf_raw": "114100",
+          "perf": "19:01",
+          "meeting": "East End Road Runners Olymp...",
+          "venue": "London Olympic Park",
+          "position": "38",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "28/06/2024",
+          "perf_raw": "112600",
+          "perf": "18:46",
+          "meeting": "Serpentine Last Friday of t...",
+          "venue": "London Hyde Park",
+          "position": "46",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "28/08/2023",
+          "perf_raw": "111900",
+          "perf": "18:39",
+          "meeting": "Barking Road Runners Phipps...",
+          "venue": "Barking",
+          "position": "28",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "29/05/2026",
+          "perf_raw": "109300",
+          "perf": "18:13",
+          "meeting": "Serpentine Last Friday of t...",
+          "venue": "London Hyde Park",
+          "position": "20",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "29/08/2025",
+          "perf_raw": "110900",
+          "perf": "18:29",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "507",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "30/08/2024",
+          "perf_raw": "113300",
+          "perf": "18:53",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "543",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "30/11/2025",
+          "perf_raw": "109600",
+          "perf": "18:16",
+          "meeting": "British Masters 5K Champion...",
+          "venue": "Battersea Park",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "31/03/2026",
+          "perf_raw": "107300",
+          "perf": "17:53",
+          "meeting": "Veterans AC 5K",
+          "venue": "Battersea Park",
+          "position": "24",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "parkrun",
+      "code": "parkrun",
+      "is_field": false,
+      "pb_raw": "111000",
+      "pb": "18:30",
+      "results": [
+        {
+          "date": "01/02/2020",
+          "perf_raw": "147500",
+          "perf": "24:35",
+          "meeting": "Roding Valley parkrun # 160",
+          "venue": "Roding Valley",
+          "position": "21",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "01/06/2024",
+          "perf_raw": "124900",
+          "perf": "20:49",
+          "meeting": "Roding Valley parkrun # 314",
+          "venue": "Roding Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "01/07/2023",
+          "perf_raw": "119400",
+          "perf": "19:54",
+          "meeting": "Roding Valley parkrun # 269",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "02/03/2024",
+          "perf_raw": "128300",
+          "perf": "21:23",
+          "meeting": "Gunpowder parkrun # 569",
+          "venue": "Gunpowder",
+          "position": "17",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "02/09/2023",
+          "perf_raw": "116000",
+          "perf": "19:20",
+          "meeting": "Roding Valley parkrun # 278",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "02/10/2021",
+          "perf_raw": "128600",
+          "perf": "21:26",
+          "meeting": "Roding Valley parkrun # 177",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "04/01/2020",
+          "perf_raw": "150600",
+          "perf": "25:06",
+          "meeting": "Roding Valley parkrun # 156",
+          "venue": "Roding Valley",
+          "position": "31",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "04/03/2023",
+          "perf_raw": "119800",
+          "perf": "19:58",
+          "meeting": "Roding Valley parkrun # 253",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/05/2024",
+          "perf_raw": "136800",
+          "perf": "22:48",
+          "meeting": "Gunpowder parkrun # 578",
+          "venue": "Gunpowder",
+          "position": "35",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/09/2021",
+          "perf_raw": "129600",
+          "perf": "21:36",
+          "meeting": "Roding Valley parkrun # 173",
+          "venue": "Roding Valley",
+          "position": "14",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "04/12/2021",
+          "perf_raw": "128300",
+          "perf": "21:23",
+          "meeting": "Roding Valley parkrun # 186",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "06/05/2023",
+          "perf_raw": "117600",
+          "perf": "19:36",
+          "meeting": "Roding Valley parkrun # 262",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/03/2020",
+          "perf_raw": "146000",
+          "perf": "24:20",
+          "meeting": "Roding Valley parkrun # 165",
+          "venue": "Roding Valley",
+          "position": "15",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "07/05/2022",
+          "perf_raw": "122900",
+          "perf": "20:29",
+          "meeting": "Roding Valley parkrun # 208",
+          "venue": "Roding Valley",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/08/2021",
+          "perf_raw": "135100",
+          "perf": "22:31",
+          "meeting": "Roding Valley parkrun # 169",
+          "venue": "Roding Valley",
+          "position": "14",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "07/09/2024",
+          "perf_raw": "114500",
+          "perf": "19:05",
+          "meeting": "Gunpowder parkrun # 596",
+          "venue": "Gunpowder",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/12/2019",
+          "perf_raw": "149500",
+          "perf": "24:55",
+          "meeting": "Roding Valley parkrun # 151",
+          "venue": "Roding Valley",
+          "position": "25",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "07/12/2024",
+          "perf_raw": "129700",
+          "perf": "21:37",
+          "meeting": "Roding Valley parkrun # 341",
+          "venue": "Roding Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/01/2022",
+          "perf_raw": "132200",
+          "perf": "22:02",
+          "meeting": "Roding Valley parkrun # 191",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/02/2020",
+          "perf_raw": "146100",
+          "perf": "24:21",
+          "meeting": "Roding Valley parkrun # 161",
+          "venue": "Roding Valley",
+          "position": "17",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "08/04/2023",
+          "perf_raw": "121100",
+          "perf": "20:11",
+          "meeting": "Roding Valley parkrun # 258",
+          "venue": "Roding Valley",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/06/2024",
+          "perf_raw": "123900",
+          "perf": "20:39",
+          "meeting": "Gunpowder parkrun # 583",
+          "venue": "Gunpowder",
+          "position": "18",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/10/2022",
+          "perf_raw": "121200",
+          "perf": "20:12",
+          "meeting": "Roding Valley parkrun # 230",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/10/2021",
+          "perf_raw": "130700",
+          "perf": "21:47",
+          "meeting": "Roding Valley parkrun # 178",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "09/11/2024",
+          "perf_raw": "115400",
+          "perf": "19:14",
+          "meeting": "Roding Valley parkrun # 337",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "10/06/2023",
+          "perf_raw": "121000",
+          "perf": "20:10",
+          "meeting": "Roding Valley parkrun # 266",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "10/09/2022",
+          "perf_raw": "121700",
+          "perf": "20:17",
+          "meeting": "Roding Valley parkrun # 226",
+          "venue": "Roding Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "11/01/2020",
+          "perf_raw": "148400",
+          "perf": "24:44",
+          "meeting": "Roding Valley parkrun # 157",
+          "venue": "Roding Valley",
+          "position": "21",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "11/09/2021",
+          "perf_raw": "129900",
+          "perf": "21:39",
+          "meeting": "Roding Valley parkrun # 174",
+          "venue": "Roding Valley",
+          "position": "14",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "12/02/2022",
+          "perf_raw": "128900",
+          "perf": "21:29",
+          "meeting": "Roding Valley parkrun # 196",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "12/03/2022",
+          "perf_raw": "129500",
+          "perf": "21:35",
+          "meeting": "Roding Valley parkrun # 200",
+          "venue": "Roding Valley",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "13/04/2019",
+          "perf_raw": "158800",
+          "perf": "26:28",
+          "meeting": "Roding Valley parkrun # 117",
+          "venue": "Roding Valley",
+          "position": "58",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "13/07/2024",
+          "perf_raw": "117100",
+          "perf": "19:31",
+          "meeting": "Gunpowder parkrun # 588",
+          "venue": "Gunpowder",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "13/08/2022",
+          "perf_raw": "120900",
+          "perf": "20:09",
+          "meeting": "Roding Valley parkrun # 222",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "14/01/2023",
+          "perf_raw": "130200",
+          "perf": "21:42",
+          "meeting": "Roding Valley parkrun # 246",
+          "venue": "Roding Valley",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "14/03/2020",
+          "perf_raw": "144300",
+          "perf": "24:03",
+          "meeting": "Roding Valley parkrun # 166",
+          "venue": "Roding Valley",
+          "position": "11",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "14/05/2022",
+          "perf_raw": "123000",
+          "perf": "20:30",
+          "meeting": "Roding Valley parkrun # 209",
+          "venue": "Roding Valley",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "14/08/2021",
+          "perf_raw": "132900",
+          "perf": "22:09",
+          "meeting": "Beverley Westwood parkrun # 40",
+          "venue": "Beverley Westwood",
+          "position": "31",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "14/12/2019",
+          "perf_raw": "162400",
+          "perf": "27:04",
+          "meeting": "Roding Valley parkrun # 152",
+          "venue": "Roding Valley",
+          "position": "29",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "15/01/2022",
+          "perf_raw": "132700",
+          "perf": "22:07",
+          "meeting": "Roding Valley parkrun # 192",
+          "venue": "Roding Valley",
+          "position": "12",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "15/02/2020",
+          "perf_raw": "145300",
+          "perf": "24:13",
+          "meeting": "Roding Valley parkrun # 162",
+          "venue": "Roding Valley",
+          "position": "13",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "16/02/2019",
+          "perf_raw": "152200",
+          "perf": "25:22",
+          "meeting": "Roding Valley parkrun # 109",
+          "venue": "Roding Valley",
+          "position": "43",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "16/04/2022",
+          "perf_raw": "123900",
+          "perf": "20:39",
+          "meeting": "Roding Valley parkrun # 205",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/08/2025",
+          "perf_raw": "111400",
+          "perf": "18:34",
+          "meeting": "Roding Valley parkrun # 376",
+          "venue": "Roding Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/10/2021",
+          "perf_raw": "126400",
+          "perf": "21:04",
+          "meeting": "Roding Valley parkrun # 179",
+          "venue": "Roding Valley",
+          "position": "12",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "17/09/2022",
+          "perf_raw": "121300",
+          "perf": "20:13",
+          "meeting": "Roding Valley parkrun # 227",
+          "venue": "Roding Valley",
+          "position": "11",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "17/12/2022",
+          "perf_raw": "133900",
+          "perf": "22:19",
+          "meeting": "Roding Valley parkrun # 240",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/05/2024",
+          "perf_raw": "148900",
+          "perf": "24:49",
+          "meeting": "Gunpowder parkrun # 580",
+          "venue": "Gunpowder",
+          "position": "61",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/09/2021",
+          "perf_raw": "126200",
+          "perf": "21:02",
+          "meeting": "Roding Valley parkrun # 175",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "18/12/2021",
+          "perf_raw": "131700",
+          "perf": "21:57",
+          "meeting": "Roding Valley parkrun # 188",
+          "venue": "Roding Valley",
+          "position": "9",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "19/02/2022",
+          "perf_raw": "130100",
+          "perf": "21:41",
+          "meeting": "Roding Valley parkrun # 197",
+          "venue": "Roding Valley",
+          "position": "15",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/03/2022",
+          "perf_raw": "127100",
+          "perf": "21:11",
+          "meeting": "Roding Valley parkrun # 201",
+          "venue": "Roding Valley",
+          "position": "8",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/04/2025",
+          "perf_raw": "117500",
+          "perf": "19:35",
+          "meeting": "Sizewell parkrun # 280",
+          "venue": "Sizewell",
+          "position": "8",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/07/2024",
+          "perf_raw": "117900",
+          "perf": "19:39",
+          "meeting": "Gunpowder parkrun # 589",
+          "venue": "Gunpowder",
+          "position": "12",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/11/2021",
+          "perf_raw": "127000",
+          "perf": "21:10",
+          "meeting": "Roding Valley parkrun # 184",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "21/05/2022",
+          "perf_raw": "123100",
+          "perf": "20:31",
+          "meeting": "Roding Valley parkrun # 210",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "21/08/2021",
+          "perf_raw": "132200",
+          "perf": "22:02",
+          "meeting": "Roding Valley parkrun # 171",
+          "venue": "Roding Valley",
+          "position": "16",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "22/02/2020",
+          "perf_raw": "145700",
+          "perf": "24:17",
+          "meeting": "Roding Valley parkrun # 163",
+          "venue": "Roding Valley",
+          "position": "19",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "22/04/2023",
+          "perf_raw": "119700",
+          "perf": "19:57",
+          "meeting": "Roding Valley parkrun # 260",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "22/06/2024",
+          "perf_raw": "118200",
+          "perf": "19:42",
+          "meeting": "Roding Valley parkrun # 317",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "22/10/2022",
+          "perf_raw": "122000",
+          "perf": "20:20",
+          "meeting": "Roding Valley parkrun # 232",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/02/2019",
+          "perf_raw": "143500",
+          "perf": "23:55",
+          "meeting": "Roding Valley parkrun # 110",
+          "venue": "Roding Valley",
+          "position": "35",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "23/04/2022",
+          "perf_raw": "124600",
+          "perf": "20:46",
+          "meeting": "Roding Valley parkrun # 206",
+          "venue": "Roding Valley",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/07/2022",
+          "perf_raw": "123200",
+          "perf": "20:32",
+          "meeting": "Roding Valley parkrun # 219",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/08/2025",
+          "perf_raw": "111000",
+          "perf": "18:30",
+          "meeting": "Roding Valley parkrun # 377",
+          "venue": "Roding Valley",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/10/2021",
+          "perf_raw": "127800",
+          "perf": "21:18",
+          "meeting": "Roding Valley parkrun # 180",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "24/07/2021",
+          "perf_raw": "136900",
+          "perf": "22:49",
+          "meeting": "Roding Valley parkrun # 167",
+          "venue": "Roding Valley",
+          "position": "21",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "24/08/2024",
+          "perf_raw": "117600",
+          "perf": "19:36",
+          "meeting": "Beverley Westwood parkrun #...",
+          "venue": "Beverley Westwood",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "24/09/2022",
+          "perf_raw": "119100",
+          "perf": "19:51",
+          "meeting": "Roding Valley parkrun # 228",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "24/12/2022",
+          "perf_raw": "122800",
+          "perf": "20:28",
+          "meeting": "Roding Valley parkrun # 241",
+          "venue": "Roding Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "25/01/2020",
+          "perf_raw": "147100",
+          "perf": "24:31",
+          "meeting": "Roding Valley parkrun # 159",
+          "venue": "Roding Valley",
+          "position": "22",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "25/05/2024",
+          "perf_raw": "121300",
+          "perf": "20:13",
+          "meeting": "Gunpowder parkrun # 581",
+          "venue": "Gunpowder",
+          "position": "24",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "25/06/2022",
+          "perf_raw": "122700",
+          "perf": "20:27",
+          "meeting": "Roding Valley parkrun # 215",
+          "venue": "Roding Valley",
+          "position": "8",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "25/09/2021",
+          "perf_raw": "127400",
+          "perf": "21:14",
+          "meeting": "Roding Valley parkrun # 176",
+          "venue": "Roding Valley",
+          "position": "8",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "25/12/2024",
+          "perf_raw": "116300",
+          "perf": "19:23",
+          "meeting": "Roding Valley parkrun # 344",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "25/12/2025",
+          "perf_raw": "117400",
+          "perf": "19:34",
+          "meeting": "Roding Valley parkrun # 395",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "26/02/2022",
+          "perf_raw": "128800",
+          "perf": "21:28",
+          "meeting": "Roding Valley parkrun # 198",
+          "venue": "Roding Valley",
+          "position": "7",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "27/05/2023",
+          "perf_raw": "117600",
+          "perf": "19:36",
+          "meeting": "Roding Valley parkrun # 264",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "27/08/2022",
+          "perf_raw": "122400",
+          "perf": "20:24",
+          "meeting": "Roding Valley parkrun # 224",
+          "venue": "Roding Valley",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "28/08/2021",
+          "perf_raw": "126700",
+          "perf": "21:07",
+          "meeting": "Roding Valley parkrun # 172",
+          "venue": "Roding Valley",
+          "position": "16",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "28/09/2024",
+          "perf_raw": "115000",
+          "perf": "19:10",
+          "meeting": "Gunpowder parkrun # 599",
+          "venue": "Gunpowder",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "28/12/2019",
+          "perf_raw": "154200",
+          "perf": "25:42",
+          "meeting": "Roding Valley parkrun # 154",
+          "venue": "Roding Valley",
+          "position": "21",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "29/04/2023",
+          "perf_raw": "119900",
+          "perf": "19:59",
+          "meeting": "Roding Valley parkrun # 261",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "29/07/2023",
+          "perf_raw": "118800",
+          "perf": "19:48",
+          "meeting": "Roding Valley parkrun # 273",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "29/10/2022",
+          "perf_raw": "124200",
+          "perf": "20:42",
+          "meeting": "Roding Valley parkrun # 233",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "30/07/2022",
+          "perf_raw": "123200",
+          "perf": "20:32",
+          "meeting": "Roding Valley parkrun # 220",
+          "venue": "Roding Valley",
+          "position": "10",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "30/10/2021",
+          "perf_raw": "132700",
+          "perf": "22:07",
+          "meeting": "Roding Valley parkrun # 181",
+          "venue": "Roding Valley",
+          "position": "5",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "30/11/2019",
+          "perf_raw": "155300",
+          "perf": "25:53",
+          "meeting": "Roding Valley parkrun # 150",
+          "venue": "Roding Valley",
+          "position": "43",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "31/07/2021",
+          "perf_raw": "130600",
+          "perf": "21:46",
+          "meeting": "Roding Valley parkrun # 168",
+          "venue": "Roding Valley",
+          "position": "20",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "31/12/2022",
+          "perf_raw": "132000",
+          "perf": "22:00",
+          "meeting": "Roding Valley parkrun # 243",
+          "venue": "Roding Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "400",
+      "code": "400",
+      "is_field": false,
+      "pb_raw": "7460",
+      "pb": "1:14",
+      "results": [
+        {
+          "date": "22/06/2022",
+          "perf_raw": "7460",
+          "perf": "1:14",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Chelmsford",
+          "position": "3",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "5000",
+      "code": "5000",
+      "is_field": false,
+      "pb_raw": "113000",
+      "pb": "18:50",
+      "results": [
+        {
+          "date": "16/06/2023",
+          "perf_raw": "113000",
+          "perf": "18:50",
+          "meeting": "Essex 5000m Championships",
+          "venue": "Ilford",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/06/2023",
+          "perf_raw": "114630",
+          "perf": "19:06",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Southend",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/08/2023",
+          "perf_raw": "115680",
+          "perf": "19:16",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Colchester",
+          "position": "2",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "1500",
+      "code": "1500",
+      "is_field": false,
+      "pb_raw": "30250",
+      "pb": "5:02",
+      "results": [
+        {
+          "date": "04/09/2022",
+          "perf_raw": "32844",
+          "perf": "5:28",
+          "meeting": "Eastern Masters League - Final",
+          "venue": "Bedford",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "05/07/2023",
+          "perf_raw": "31570",
+          "perf": "5:15",
+          "meeting": "Eastern Masters League",
+          "venue": "Bury St. Edmunds",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/05/2026",
+          "perf_raw": "30470",
+          "perf": "5:04",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/06/2025",
+          "perf_raw": "31250",
+          "perf": "5:12",
+          "meeting": "The Mile End Miles",
+          "venue": "Mile End",
+          "position": "-",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/09/2025",
+          "perf_raw": "30250",
+          "perf": "5:02",
+          "meeting": "Eastern Masters AC League F...",
+          "venue": "Greys",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/08/2024",
+          "perf_raw": "32250",
+          "perf": "5:22",
+          "meeting": "Eastern Masters Track & Fie...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/09/2023",
+          "perf_raw": "31140",
+          "perf": "5:11",
+          "meeting": "Eastern Masters League Final",
+          "venue": "Bedford",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "15/09/2024",
+          "perf_raw": "31242",
+          "perf": "5:12",
+          "meeting": "Eastern Masters Track & Fie...",
+          "venue": "Milton Keynes",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/05/2026",
+          "perf_raw": "30344",
+          "perf": "5:03",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Lee Valley",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/06/2023",
+          "perf_raw": "31670",
+          "perf": "5:16",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Southend",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/08/2023",
+          "perf_raw": "32890",
+          "perf": "5:28",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Colchester",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "22/06/2025",
+          "perf_raw": "32117",
+          "perf": "5:21",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Parliament Hill",
+          "position": "2",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "10K",
+      "code": "10K",
+      "is_field": false,
+      "pb_raw": "221200",
+      "pb": "36:52",
+      "results": [
+        {
+          "date": "01/10/2023",
+          "perf_raw": "229400",
+          "perf": "38:14",
+          "meeting": "Southend 10K Classic",
+          "venue": "Southend",
+          "position": "75",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "02/04/2023",
+          "perf_raw": "237100",
+          "perf": "39:31",
+          "meeting": "St Clare Hospice 10K",
+          "venue": "Hastingwood",
+          "position": "20",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "03/05/2026",
+          "perf_raw": "223400",
+          "perf": "37:14",
+          "meeting": "RunThrough Victoria Park",
+          "venue": "London Victoria Park",
+          "position": "9",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "05/10/2025",
+          "perf_raw": "229900",
+          "perf": "38:19",
+          "meeting": "Southend 10K Classic",
+          "venue": "Southend",
+          "position": "55",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/07/2025",
+          "perf_raw": "226800",
+          "perf": "37:48",
+          "meeting": "Great North 10K",
+          "venue": "Gateshead",
+          "position": "155",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "10/05/2026",
+          "perf_raw": "221600",
+          "perf": "36:56",
+          "meeting": "Bideford 10K",
+          "venue": "Bideford",
+          "position": "84",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "11/05/2025",
+          "perf_raw": "225300",
+          "perf": "37:33",
+          "meeting": "Bideford 10K",
+          "venue": "Bideford",
+          "position": "36",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "12/04/2026",
+          "perf_raw": "226000",
+          "perf": "37:40",
+          "meeting": "St Clare Hospice 10K",
+          "venue": "Hastingwood",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "15/03/2026",
+          "perf_raw": "226000",
+          "perf": "37:40",
+          "meeting": "Debden 5K / 10K",
+          "venue": "Saffron Walden",
+          "position": "5",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/10/2025",
+          "perf_raw": "230100",
+          "perf": "38:21",
+          "meeting": "European Masters Championsh...",
+          "venue": "Funchal, POR",
+          "position": "8",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/11/2023",
+          "perf_raw": "227100",
+          "perf": "37:51",
+          "meeting": "Brighton 10K",
+          "venue": "Brighton",
+          "position": "153",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/03/2025",
+          "perf_raw": "225700",
+          "perf": "37:37",
+          "meeting": "Keith Hall Memorial 10K",
+          "venue": "Thorney",
+          "position": "43",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "27/03/2022",
+          "perf_raw": "259000",
+          "perf": "43:10",
+          "meeting": "RunFest at Lee Valley 10K",
+          "venue": "Waltham Abbey",
+          "position": "26",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "Mile",
+      "code": "Mile",
+      "is_field": false,
+      "pb_raw": "33188",
+      "pb": "5:31",
+      "results": [
+        {
+          "date": "02/08/2023",
+          "perf_raw": "33220",
+          "perf": "5:32",
+          "meeting": "Eastern Masters League",
+          "venue": "Chelmsford",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "05/07/2024",
+          "perf_raw": "34510",
+          "perf": "5:45",
+          "meeting": "eastern Masters Track & Fie...",
+          "venue": "Colchester",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/06/2025",
+          "perf_raw": "33506",
+          "perf": "5:35",
+          "meeting": "The Mile End Miles",
+          "venue": "Mile End",
+          "position": "15",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/07/2022",
+          "perf_raw": "36350",
+          "perf": "6:03",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Bury St. Edmunds",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "24/06/2023",
+          "perf_raw": "33188",
+          "perf": "5:31",
+          "meeting": "MilesofMiles ",
+          "venue": "Chelmsford",
+          "position": "2",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "100",
+      "code": "100",
+      "is_field": false,
+      "pb_raw": "1634",
+      "pb": "0:16",
+      "results": [
+        {
+          "date": "04/09/2022",
+          "perf_raw": "1634",
+          "perf": "0:16",
+          "meeting": "Eastern Masters League - Final",
+          "venue": "Bedford",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "18/04/2022",
+          "perf_raw": "1637",
+          "perf": "0:16",
+          "meeting": "Woodford Green with Essex L...",
+          "venue": "Woodford",
+          "position": "6",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "Long Jump",
+      "code": "Long_Jump",
+      "is_field": false,
+      "pb_raw": "343",
+      "pb": "0:03",
+      "results": [
+        {
+          "date": "04/09/2022",
+          "perf_raw": "343",
+          "perf": "0:03",
+          "meeting": "Eastern Masters League - Final",
+          "venue": "Bedford",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/07/2022",
+          "perf_raw": "343",
+          "perf": "0:03",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Bury St. Edmunds",
+          "position": "2",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "800",
+      "code": "800",
+      "is_field": false,
+      "pb_raw": "15820",
+      "pb": "2:38",
+      "results": [
+        {
+          "date": "03/06/2026",
+          "perf_raw": "16010",
+          "perf": "2:40",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/06/2025",
+          "perf_raw": "16030",
+          "perf": "2:40",
+          "meeting": "Eastern Masters AC - South ...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "07/06/2023",
+          "perf_raw": "16080",
+          "perf": "2:40",
+          "meeting": "Eastern Masters League",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "19/08/2023",
+          "perf_raw": "15850",
+          "perf": "2:38",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Colchester",
+          "position": "4",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/05/2023",
+          "perf_raw": "15820",
+          "perf": "2:38",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Braintree",
+          "position": "3",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "26/02/2023",
+          "perf_raw": "15864",
+          "perf": "2:38",
+          "meeting": "England Masters AA Inter Ar...",
+          "venue": "Lee Valley",
+          "position": "4",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "3000",
+      "code": "3000",
+      "is_field": false,
+      "pb_raw": "62843",
+      "pb": "10:28",
+      "results": [
+        {
+          "date": "01/08/2025",
+          "perf_raw": "64840",
+          "perf": "10:48",
+          "meeting": "Eastern Masters AC - South ...",
+          "venue": "Colchester",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "03/06/2026",
+          "perf_raw": "64710",
+          "perf": "10:47",
+          "meeting": "Eastern Masters League - So...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "04/06/2025",
+          "perf_raw": "64620",
+          "perf": "10:46",
+          "meeting": "Eastern Masters AC - South ...",
+          "venue": "Grays",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "06/09/2025",
+          "perf_raw": "65531",
+          "perf": "10:55",
+          "meeting": "Eastern Masters AC League F...",
+          "venue": "Greys",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "09/09/2023",
+          "perf_raw": "66730",
+          "perf": "11:07",
+          "meeting": "Eastern Masters League Final",
+          "venue": "Bedford",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "10/05/2023",
+          "perf_raw": "67440",
+          "perf": "11:14",
+          "meeting": "Eastern Masters League",
+          "venue": "Southend",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/05/2026",
+          "perf_raw": "62843",
+          "perf": "10:28",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Lee Valley",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "20/05/2023",
+          "perf_raw": "67800",
+          "perf": "11:18",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Braintree",
+          "position": "2",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "22/06/2025",
+          "perf_raw": "67185",
+          "perf": "11:11",
+          "meeting": "Southern Athletics League D...",
+          "venue": "Parliament Hill",
+          "position": "1",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "26/03/2023",
+          "perf_raw": "68206",
+          "perf": "11:22",
+          "meeting": "Eastern Master AC/Veterans ...",
+          "venue": "Lee Valley",
+          "position": "3",
+          "ag": "Veteran 45"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-# Garmin Dashboard
+# TrackRecord
 
-A local dashboard that pulls your activity data from Garmin Connect and displays running, strength, and cycling trends in your browser.
+A local dashboard that pulls your activity data from Garmin Connect and displays running, strength, and cycling trends in your browser. Also integrates with Power of 10 for race results and athlete comparisons.
 
 ## Requirements
 

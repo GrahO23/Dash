@@ -1,0 +1,1688 @@
+{
+  "guid": "fa6321a1-6888-4cba-bf86-72d0110d43b6",
+  "url": "https://www.powerof10.uk/Home/Athlete/fa6321a1-6888-4cba-bf86-72d0110d43b6",
+  "fetched_at": "2026-06-24T10:53:38.770078",
+  "profile": {
+    "name": "Elizabeth Renondeau",
+    "club": "Vale Royal AC",
+    "age_group": "V45",
+    "county": "Women",
+    "rank_uk": "21921"
+  },
+  "events": [
+    {
+      "event": "10 Miles",
+      "code": "10M",
+      "is_field": false,
+      "pb_raw": "394800",
+      "pb": "1:05:48",
+      "results": [
+        {
+          "date": "10/08/2008",
+          "perf_raw": "412000",
+          "perf": "1:08:40",
+          "meeting": "Great Warford 10",
+          "venue": "Great Warford",
+          "position": "27",
+          "ag": "Senior"
+        },
+        {
+          "date": "16/08/2009",
+          "perf_raw": "398000",
+          "perf": "1:06:20",
+          "meeting": "Great Warford 10",
+          "venue": "Great Warford",
+          "position": "53",
+          "ag": "Senior"
+        },
+        {
+          "date": "27/04/2013",
+          "perf_raw": "394800",
+          "perf": "1:05:48",
+          "meeting": "North Wales 10",
+          "venue": "Wrexham",
+          "position": "24",
+          "ag": "Senior"
+        }
+      ]
+    },
+    {
+      "event": "parkrun",
+      "code": "parkrun",
+      "is_field": false,
+      "pb_raw": "103600",
+      "pb": "17:16",
+      "results": [
+        {
+          "date": "01/01/2022",
+          "perf_raw": "105600",
+          "perf": "17:36",
+          "meeting": "Widnes parkrun # 287",
+          "venue": "Widnes",
+          "position": "3",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "01/10/2016",
+          "perf_raw": "118900",
+          "perf": "19:49",
+          "meeting": "Chester parkrun # 13",
+          "venue": "Chester",
+          "position": "13",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "02/08/2014",
+          "perf_raw": "124000",
+          "perf": "20:40",
+          "meeting": "Delamere parkrun # 71",
+          "venue": "Delamere",
+          "position": "14",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "02/10/2021",
+          "perf_raw": "107700",
+          "perf": "17:57",
+          "meeting": "Widnes parkrun # 274",
+          "venue": "Widnes",
+          "position": "2",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "02/12/2023",
+          "perf_raw": "119300",
+          "perf": "19:53",
+          "meeting": "Panshanger parkrun # 417",
+          "venue": "Panshanger",
+          "position": "9",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "03/06/2017",
+          "perf_raw": "113900",
+          "perf": "18:59",
+          "meeting": "Ellesmere Port parkrun # 136",
+          "venue": "Ellesmere Port",
+          "position": "2",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "05/08/2017",
+          "perf_raw": "118800",
+          "perf": "19:48",
+          "meeting": "Chester parkrun # 58",
+          "venue": "Chester",
+          "position": "12",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "06/04/2013",
+          "perf_raw": "117300",
+          "perf": "19:33",
+          "meeting": "Delamere parkrun # 6",
+          "venue": "Delamere",
+          "position": "10",
+          "ag": "Senior"
+        },
+        {
+          "date": "06/05/2023",
+          "perf_raw": "110400",
+          "perf": "18:24",
+          "meeting": "Pavilion Gardens parkrun # 23",
+          "venue": "Pavilion Gardens",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "07/09/2019",
+          "perf_raw": "103600",
+          "perf": "17:16",
+          "meeting": "Burgess parkrun # 353",
+          "venue": "Burgess",
+          "position": "2",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "08/07/2023",
+          "perf_raw": "117500",
+          "perf": "19:35",
+          "meeting": "Thomas Mills parkrun # 137",
+          "venue": "Thomas Mills",
+          "position": "3",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "10/03/2018",
+          "perf_raw": "135500",
+          "perf": "22:35",
+          "meeting": "Delamere parkrun # 250",
+          "venue": "Delamere",
+          "position": "29",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "15/07/2023",
+          "perf_raw": "119100",
+          "perf": "19:51",
+          "meeting": "Chester parkrun # 290",
+          "venue": "Chester",
+          "position": "7",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "17/06/2017",
+          "perf_raw": "115400",
+          "perf": "19:14",
+          "meeting": "Chester parkrun # 51",
+          "venue": "Chester",
+          "position": "5",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "22/07/2023",
+          "perf_raw": "112600",
+          "perf": "18:46",
+          "meeting": "Widnes parkrun # 366",
+          "venue": "Widnes",
+          "position": "5",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "22/08/2015",
+          "perf_raw": "114600",
+          "perf": "19:06",
+          "meeting": "Birkenhead parkrun # 6",
+          "venue": "Birkenhead",
+          "position": "11",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "24/09/2022",
+          "perf_raw": "117000",
+          "perf": "19:30",
+          "meeting": "Chester parkrun # 250",
+          "venue": "Chester",
+          "position": "9",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "26/10/2024",
+          "perf_raw": "108300",
+          "perf": "18:03",
+          "meeting": "Widnes parkrun # 430",
+          "venue": "Widnes",
+          "position": "12",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "27/02/2016",
+          "perf_raw": "140100",
+          "perf": "23:21",
+          "meeting": "Harrogate parkrun # 218",
+          "venue": "Harrogate",
+          "position": "60",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "27/08/2016",
+          "perf_raw": "122000",
+          "perf": "20:20",
+          "meeting": "Chester parkrun # 8",
+          "venue": "Chester",
+          "position": "18",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "29/04/2017",
+          "perf_raw": "131500",
+          "perf": "21:55",
+          "meeting": "Wepre parkrun # 51",
+          "venue": "Wepre",
+          "position": "2",
+          "ag": "Veteran 35"
+        }
+      ]
+    },
+    {
+      "event": "10000",
+      "code": "10000",
+      "is_field": false,
+      "pb_raw": "218225",
+      "pb": "36:22",
+      "results": [
+        {
+          "date": "05/06/2021",
+          "perf_raw": "223061",
+          "perf": "37:10",
+          "meeting": "M\u00fcller British Athletics 10...",
+          "venue": "Birmingham (U)",
+          "position": "17",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "24/06/2021",
+          "perf_raw": "218225",
+          "perf": "36:22",
+          "meeting": "Midsummer Night 10000m Classic",
+          "venue": "Leeds",
+          "position": "10",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "5K",
+      "code": "5K",
+      "is_field": false,
+      "pb_raw": "101200",
+      "pb": "16:52",
+      "results": [
+        {
+          "date": "01/07/2021",
+          "perf_raw": "103700",
+          "perf": "17:17",
+          "meeting": "Sale Sizzler 5K",
+          "venue": "Manchester",
+          "position": "55",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "01/12/2018",
+          "perf_raw": "104900",
+          "perf": "17:29",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "70",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "02/03/2019",
+          "perf_raw": "104400",
+          "perf": "17:24",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "7",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "03/08/2017",
+          "perf_raw": "106500",
+          "perf": "17:45",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "76",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "03/08/2023",
+          "perf_raw": "107300",
+          "perf": "17:53",
+          "meeting": "Sale Sizzler 5K",
+          "venue": "Manchester",
+          "position": "101",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "04/12/2022",
+          "perf_raw": "107000",
+          "perf": "17:50",
+          "meeting": "British Masters 5K Champion...",
+          "venue": "Battersea Park",
+          "position": "59",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "05/07/2018",
+          "perf_raw": "106100",
+          "perf": "17:41",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "62",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "05/10/2020",
+          "perf_raw": "103600",
+          "perf": "17:16",
+          "meeting": "Fast 5K",
+          "venue": "Ashton-in-Makerfield",
+          "position": "11",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "06/08/2009",
+          "perf_raw": "114500",
+          "perf": "19:05",
+          "meeting": "Manchester Sizzler 5K",
+          "venue": "Wythenshawe",
+          "position": "94",
+          "ag": "Senior"
+        },
+        {
+          "date": "07/05/2017",
+          "perf_raw": "112100",
+          "perf": "18:41",
+          "meeting": "Ffrith 5K (Inc North Wales ...",
+          "venue": "Prestatyn",
+          "position": "19",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "07/11/2021",
+          "perf_raw": "103900",
+          "perf": "17:19",
+          "meeting": "Podium 5K (incl. British Ma...",
+          "venue": "Barrowford",
+          "position": "42",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "08/05/2026",
+          "perf_raw": "108700",
+          "perf": "18:07",
+          "meeting": "Christleton 5K",
+          "venue": "Christleton",
+          "position": "179",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "08/08/2019",
+          "perf_raw": "104400",
+          "perf": "17:24",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "62",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "08/08/2020",
+          "perf_raw": "102800",
+          "perf": "17:08",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "27",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "11/03/2018",
+          "perf_raw": "111700",
+          "perf": "18:37",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "19",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "11/07/2019",
+          "perf_raw": "104200",
+          "perf": "17:22",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "46",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "16/05/2025",
+          "perf_raw": "107600",
+          "perf": "17:56",
+          "meeting": "Christleton 5K",
+          "venue": "Christleton",
+          "position": "129",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/06/2017",
+          "perf_raw": "108400",
+          "perf": "18:04",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "28",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "16/06/2019",
+          "perf_raw": "107700",
+          "perf": "17:57",
+          "meeting": "Horwich Festival of Running...",
+          "venue": "Horwich",
+          "position": "40",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "17/06/2018",
+          "perf_raw": "109500",
+          "perf": "18:15",
+          "meeting": "British Masters 5K Champion...",
+          "venue": "Horwich",
+          "position": "58",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "17/06/2021",
+          "perf_raw": "103800",
+          "perf": "17:18",
+          "meeting": "Sale Sizzler 5K",
+          "venue": "Manchester",
+          "position": "76",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "18/03/2017",
+          "perf_raw": "108500",
+          "perf": "18:05",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "20",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "18/05/2018",
+          "perf_raw": "107700",
+          "perf": "17:57",
+          "meeting": "Christleton 5K",
+          "venue": "Chester",
+          "position": "126",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "19/05/2017",
+          "perf_raw": "107500",
+          "perf": "17:55",
+          "meeting": "Christleton 5K",
+          "venue": "Christleton",
+          "position": "135",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "19/07/2018",
+          "perf_raw": "106900",
+          "perf": "17:49",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "67",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "19/08/2015",
+          "perf_raw": "113800",
+          "perf": "18:58",
+          "meeting": "Ellesmere Port RC 5K",
+          "venue": "Capenhurst",
+          "position": "75",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "20/07/2017",
+          "perf_raw": "108200",
+          "perf": "18:02",
+          "meeting": "Sale Sizzler 5K Series",
+          "venue": "Manchester",
+          "position": "99",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "20/08/2008",
+          "perf_raw": "112700",
+          "perf": "18:47",
+          "meeting": "Capenhurst 5K",
+          "venue": "Capenhurst",
+          "position": "29",
+          "ag": "Senior"
+        },
+        {
+          "date": "22/05/2026",
+          "perf_raw": "110100",
+          "perf": "18:21",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "481",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/05/2025",
+          "perf_raw": "106300",
+          "perf": "17:43",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "346",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/08/2006",
+          "perf_raw": "115100",
+          "perf": "19:11",
+          "meeting": "Urenco Capenhurst 5km",
+          "venue": "Capenhurst",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "26/04/2019",
+          "perf_raw": "103100",
+          "perf": "17:11",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "151",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "27/04/2018",
+          "perf_raw": "108600",
+          "perf": "18:06",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "202",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "27/06/2023",
+          "perf_raw": "109400",
+          "perf": "18:14",
+          "meeting": "Sri Chinmoy Dashing Deer 5K",
+          "venue": "Battersea Park",
+          "position": "147",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "27/08/2018",
+          "perf_raw": "105600",
+          "perf": "17:36",
+          "meeting": "Podium 5K",
+          "venue": "Barrowford",
+          "position": "60",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "27/08/2021",
+          "perf_raw": "102000",
+          "perf": "17:00",
+          "meeting": "Mid-Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "156",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "28/04/2023",
+          "perf_raw": "105500",
+          "perf": "17:35",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "300",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "28/08/2020",
+          "perf_raw": "101200",
+          "perf": "16:52",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "155",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "30/05/2018",
+          "perf_raw": "110200",
+          "perf": "18:22",
+          "meeting": "Wirral Seaside 5K Series",
+          "venue": "Wirral",
+          "position": "19",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "30/08/2024",
+          "perf_raw": "113800",
+          "perf": "18:58",
+          "meeting": "Mid Cheshire 5K",
+          "venue": "Kingsley",
+          "position": "559",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "31/07/2025",
+          "perf_raw": "106800",
+          "perf": "17:48",
+          "meeting": "Sale Sizzler 5K",
+          "venue": "Manchester",
+          "position": "114",
+          "ag": "Veteran 45"
+        }
+      ]
+    },
+    {
+      "event": "Half Marathon",
+      "code": "Half_Marathon",
+      "is_field": false,
+      "pb_raw": "4718",
+      "pb": "0:47",
+      "results": [
+        {
+          "date": "01/10/2006",
+          "perf_raw": "5337",
+          "perf": "0:53",
+          "meeting": "Great North Run",
+          "venue": "Newcastle-South Shields",
+          "position": "45",
+          "ag": "Senior"
+        },
+        {
+          "date": "03/03/2019",
+          "perf_raw": "5529",
+          "perf": "0:55",
+          "meeting": "Settle Half Marathon",
+          "venue": "Settle",
+          "position": "13",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "08/10/2017",
+          "perf_raw": "5135",
+          "perf": "0:51",
+          "meeting": "Cheshire Half Marathon",
+          "venue": "Northwich",
+          "position": "16",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "09/09/2007",
+          "perf_raw": "5319",
+          "perf": "0:53",
+          "meeting": "Lake Vyrnwy Half",
+          "venue": "Lake Vyrnwy",
+          "position": "111",
+          "ag": "Senior"
+        },
+        {
+          "date": "10/09/2017",
+          "perf_raw": "4876",
+          "perf": "0:48",
+          "meeting": "Lake Vyrnwy Half Marathon",
+          "venue": "Llanwddyn",
+          "position": "44",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "12/05/2013",
+          "perf_raw": "5218",
+          "perf": "0:52",
+          "meeting": "Chester Half Marathon",
+          "venue": "Chester",
+          "position": "134",
+          "ag": "Senior"
+        },
+        {
+          "date": "13/09/2015",
+          "perf_raw": "5000",
+          "perf": "0:50",
+          "meeting": "Lake Vyrnwy Half Marathon",
+          "venue": "Llanwddyn",
+          "position": "54",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "15/03/2015",
+          "perf_raw": "5296",
+          "perf": "0:52",
+          "meeting": "United Airlines NYC Half",
+          "venue": "New York NY, USA",
+          "position": "618",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "16/01/2022",
+          "perf_raw": "4738",
+          "perf": "0:47",
+          "meeting": "Essar Four Villages Half Ma...",
+          "venue": "Helsby",
+          "position": "34",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "20/01/2008",
+          "perf_raw": "5381",
+          "perf": "0:53",
+          "meeting": "Shell Four Villages Half Ma...",
+          "venue": "Helsby",
+          "position": "184",
+          "ag": "Senior"
+        },
+        {
+          "date": "20/01/2019",
+          "perf_raw": "4938",
+          "perf": "0:49",
+          "meeting": "Four Villages Half Marathon",
+          "venue": "Helsby",
+          "position": "80",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "20/03/2022",
+          "perf_raw": "4759",
+          "perf": "0:47",
+          "meeting": "Waters Wilmslow Half Marathon",
+          "venue": "Wilmslow",
+          "position": "88",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "20/09/2020",
+          "perf_raw": "4718",
+          "perf": "0:47",
+          "meeting": "Cheshire Half Marathon",
+          "venue": "Siddington",
+          "position": "56",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "25/01/2015",
+          "perf_raw": "5417",
+          "perf": "0:54",
+          "meeting": "Miami Half Marathon",
+          "venue": "Miami FL, USA",
+          "position": "142",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "29/04/2018",
+          "perf_raw": "5233",
+          "perf": "0:52",
+          "meeting": "Essar Chester Half Marathon",
+          "venue": "Chester",
+          "position": "132",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "30/09/2007",
+          "perf_raw": "5323",
+          "perf": "0:53",
+          "meeting": "Bupa Great North Run Half M...",
+          "venue": "Newcastle-South Shields",
+          "position": "548",
+          "ag": "Senior"
+        }
+      ]
+    },
+    {
+      "event": "10K",
+      "code": "10K",
+      "is_field": false,
+      "pb_raw": "212400",
+      "pb": "35:24",
+      "results": [
+        {
+          "date": "01/10/2023",
+          "perf_raw": "223800",
+          "perf": "37:18",
+          "meeting": "Knutsford 10K",
+          "venue": "Knutsford",
+          "position": "144",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "02/07/2017",
+          "perf_raw": "225100",
+          "perf": "37:31",
+          "meeting": "Alderley Bypass 10K",
+          "venue": "Alderley Edge",
+          "position": "61",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "02/09/2018",
+          "perf_raw": "225100",
+          "perf": "37:31",
+          "meeting": "Trafford 10K",
+          "venue": "Partington",
+          "position": "147",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "05/08/2018",
+          "perf_raw": "239700",
+          "perf": "39:57",
+          "meeting": "Trentham 10K incl British M...",
+          "venue": "Tittensor",
+          "position": "36",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "05/11/2017",
+          "perf_raw": "224900",
+          "perf": "37:29",
+          "meeting": "Age UK Leeds Abbey Dash 10K",
+          "venue": "Leeds",
+          "position": "427",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "06/05/2018",
+          "perf_raw": "235700",
+          "perf": "39:17",
+          "meeting": "Simplyhealth Great Birmingh...",
+          "venue": "Birmingham",
+          "position": "116",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "07/04/2019",
+          "perf_raw": "214600",
+          "perf": "35:46",
+          "meeting": "Port of Blyth 10K (Inc Brit...",
+          "venue": "Blyth",
+          "position": "47",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "09/07/2017",
+          "perf_raw": "228100",
+          "perf": "38:01",
+          "meeting": "RunThrough Tatton 10K",
+          "venue": "Knutsford",
+          "position": "7",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "09/12/2007",
+          "perf_raw": "238500",
+          "perf": "39:45",
+          "meeting": "Borders League",
+          "venue": "Tattenhall",
+          "position": "76",
+          "ag": "Senior"
+        },
+        {
+          "date": "09/12/2018",
+          "perf_raw": "218100",
+          "perf": "36:21",
+          "meeting": "Telford 10K",
+          "venue": "Telford",
+          "position": "286",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "10/03/2019",
+          "perf_raw": "217800",
+          "perf": "36:18",
+          "meeting": "Trafford 10K",
+          "venue": "Partington",
+          "position": "142",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "11/07/2021",
+          "perf_raw": "214000",
+          "perf": "35:40",
+          "meeting": "Wilmslow Summer 10K",
+          "venue": "Wilmslow",
+          "position": "79",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "13/07/2025",
+          "perf_raw": "224900",
+          "perf": "37:29",
+          "meeting": "Wilmslow Summer 10K",
+          "venue": "Wilmslow",
+          "position": "138",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "14/04/2013",
+          "perf_raw": "242700",
+          "perf": "40:27",
+          "meeting": "Whitley 10K",
+          "venue": "Whitley",
+          "position": "26",
+          "ag": "Senior"
+        },
+        {
+          "date": "15/06/2025",
+          "perf_raw": "223900",
+          "perf": "37:19",
+          "meeting": "Colshaw Hall 10K",
+          "venue": "Knutsford",
+          "position": "124",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "16/09/2018",
+          "perf_raw": "225500",
+          "perf": "37:35",
+          "meeting": "Essar Guilden Sutton 10K",
+          "venue": "Guilden Sutton",
+          "position": "23",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "16/10/2005",
+          "perf_raw": "224900",
+          "perf": "37:29",
+          "meeting": "RunLondon 10K",
+          "venue": "London Hyde Park",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "16/10/2016",
+          "perf_raw": "238300",
+          "perf": "39:43",
+          "meeting": "Farndon 10K",
+          "venue": "Farndon",
+          "position": "21",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "16/10/2021",
+          "perf_raw": "215400",
+          "perf": "35:54",
+          "meeting": "Run Cheshire 10K",
+          "venue": "Northwich",
+          "position": "33",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "17/08/2008",
+          "perf_raw": "235000",
+          "perf": "39:10",
+          "meeting": "Birchwood 10K",
+          "venue": "Birchwood",
+          "position": "96",
+          "ag": "Senior"
+        },
+        {
+          "date": "18/09/2022",
+          "perf_raw": "224400",
+          "perf": "37:24",
+          "meeting": "Essar Guilden Sutton 10K",
+          "venue": "Guilden Sutton",
+          "position": "17",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "18/10/2015",
+          "perf_raw": "225400",
+          "perf": "37:34",
+          "meeting": "Farndon 10K",
+          "venue": "Farndon",
+          "position": "18",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "18/10/2020",
+          "perf_raw": "213600",
+          "perf": "35:36",
+          "meeting": "Run Cheshire 10K",
+          "venue": "Northwich",
+          "position": "121",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "19/10/2025",
+          "perf_raw": "219900",
+          "perf": "36:39",
+          "meeting": "Trafford 10K",
+          "venue": "Partington",
+          "position": "197",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "23/03/2019",
+          "perf_raw": "214100",
+          "perf": "35:41",
+          "meeting": "Cheshire Arley Hall 10K",
+          "venue": "Arley",
+          "position": "55",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "24/06/2018",
+          "perf_raw": "227200",
+          "perf": "37:52",
+          "meeting": "Stone St Michael`s 10K",
+          "venue": "Stone",
+          "position": "37",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "24/09/2006",
+          "perf_raw": "238000",
+          "perf": "39:40",
+          "meeting": "Sutton Six 10K",
+          "venue": "Sutton",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "25/06/2017",
+          "perf_raw": "227800",
+          "perf": "37:58",
+          "meeting": "Colshaw Hall 10K",
+          "venue": "Knutsford",
+          "position": "22",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "25/10/2015",
+          "perf_raw": "231400",
+          "perf": "38:34",
+          "meeting": "Flintshire 10K",
+          "venue": "Mold",
+          "position": "13",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "25/11/2018",
+          "perf_raw": "216300",
+          "perf": "36:03",
+          "meeting": "Wilmslow Festive 10K",
+          "venue": "Wilmslow",
+          "position": "63",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "26/03/2017",
+          "perf_raw": "220100",
+          "perf": "36:41",
+          "meeting": "Cheshire 10K",
+          "venue": "Antrobus",
+          "position": "41",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "26/05/2019",
+          "perf_raw": "223600",
+          "perf": "37:16",
+          "meeting": "Simplyhealth Great Birmingh...",
+          "venue": "Birmingham",
+          "position": "75",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "26/11/2023",
+          "perf_raw": "224900",
+          "perf": "37:29",
+          "meeting": "Wilmslow Festive 10K",
+          "venue": "Wilmslow",
+          "position": "205",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "27/11/2022",
+          "perf_raw": "221400",
+          "perf": "36:54",
+          "meeting": "Wilmslow Festive 10K",
+          "venue": "Wilmslow",
+          "position": "157",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "27/12/2021",
+          "perf_raw": "212600",
+          "perf": "35:26",
+          "meeting": "Ribble Valley 10K",
+          "venue": "Clitheroe",
+          "position": "145",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "27/12/2022",
+          "perf_raw": "229300",
+          "perf": "38:13",
+          "meeting": "Ribble Valley 10K",
+          "venue": "Clitheroe",
+          "position": "191",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "28/05/2017",
+          "perf_raw": "227800",
+          "perf": "37:58",
+          "meeting": "Simplyhealth Great Manchest...",
+          "venue": "Manchester",
+          "position": "129",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "28/11/2021",
+          "perf_raw": "212700",
+          "perf": "35:27",
+          "meeting": "Wilmslow Festive 10K",
+          "venue": "Wilmslow",
+          "position": "80",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "29/12/2024",
+          "perf_raw": "227600",
+          "perf": "37:56",
+          "meeting": "Ribble Valley 10K (inc Nort...",
+          "venue": "Clitheroe",
+          "position": "229",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "30/03/2018",
+          "perf_raw": "231400",
+          "perf": "38:34",
+          "meeting": "Salford 10K",
+          "venue": "Salford",
+          "position": "145",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "30/10/2016",
+          "perf_raw": "243700",
+          "perf": "40:37",
+          "meeting": "Accrington 10K",
+          "venue": "Accrington",
+          "position": "21",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "30/12/2018",
+          "perf_raw": "213700",
+          "perf": "35:37",
+          "meeting": "Ribble Valley 10K",
+          "venue": "Clitheroe",
+          "position": "127",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "31/12/2023",
+          "perf_raw": "227800",
+          "perf": "37:58",
+          "meeting": "Ribble Valley 10K (inc Nort...",
+          "venue": "Clitheroe",
+          "position": "230",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "5000",
+      "code": "5000",
+      "is_field": false,
+      "pb_raw": "106321",
+      "pb": "17:43",
+      "results": [
+        {
+          "date": "13/06/2021",
+          "perf_raw": "106321",
+          "perf": "17:43",
+          "meeting": "Northern Athletics Champion...",
+          "venue": "Leigh",
+          "position": "2",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "5 Miles",
+      "code": "5M",
+      "is_field": false,
+      "pb_raw": "169400",
+      "pb": "28:14",
+      "results": [
+        {
+          "date": "01/10/2017",
+          "perf_raw": "185900",
+          "perf": "30:59",
+          "meeting": "Border League 5",
+          "venue": "Capenhurst",
+          "position": "68",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "02/02/2020",
+          "perf_raw": "173100",
+          "perf": "28:51",
+          "meeting": "Alsager 5",
+          "venue": "Alsager",
+          "position": "72",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "03/02/2019",
+          "perf_raw": "177000",
+          "perf": "29:30",
+          "meeting": "Alsager 5",
+          "venue": "Alsager",
+          "position": "69",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "03/04/2013",
+          "perf_raw": "187200",
+          "perf": "31:12",
+          "meeting": "Chester Spring 5",
+          "venue": "Chester",
+          "position": "57",
+          "ag": "Senior"
+        },
+        {
+          "date": "04/02/2018",
+          "perf_raw": "180200",
+          "perf": "30:02",
+          "meeting": "Alsager 5",
+          "venue": "Alsager",
+          "position": "79",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "04/04/2007",
+          "perf_raw": "194700",
+          "perf": "32:27",
+          "meeting": "Chester Spring 5",
+          "venue": "Chester",
+          "position": "130",
+          "ag": "Senior"
+        },
+        {
+          "date": "05/02/2017",
+          "perf_raw": "183700",
+          "perf": "30:37",
+          "meeting": "Alsager 5",
+          "venue": "Alsager",
+          "position": "95",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "05/04/2005",
+          "perf_raw": "197200",
+          "perf": "32:52",
+          "meeting": "Chester Spring 5",
+          "venue": "Chester",
+          "position": "12",
+          "ag": "Senior"
+        },
+        {
+          "date": "05/04/2006",
+          "perf_raw": "194400",
+          "perf": "32:24",
+          "meeting": "Chester Spring 5",
+          "venue": "Chester",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "06/02/2022",
+          "perf_raw": "175300",
+          "perf": "29:13",
+          "meeting": "VeloRunner Alsager 5",
+          "venue": "Stoke on Trent",
+          "position": "67",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "06/11/2016",
+          "perf_raw": "185000",
+          "perf": "30:50",
+          "meeting": "Borders League 5",
+          "venue": "Upton-by-Chester",
+          "position": "79",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "10/08/2025",
+          "perf_raw": "181600",
+          "perf": "30:16",
+          "meeting": "City of Preston 5 / 10",
+          "venue": "Preston",
+          "position": "6",
+          "ag": "Veteran 45"
+        },
+        {
+          "date": "11/04/2018",
+          "perf_raw": "183200",
+          "perf": "30:32",
+          "meeting": "Chester Spring 5",
+          "venue": "Chester",
+          "position": "47",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "11/10/2015",
+          "perf_raw": "178000",
+          "perf": "29:40",
+          "meeting": "Border League 5",
+          "venue": "Capenhurst",
+          "position": "40",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "14/11/2021",
+          "perf_raw": "169400",
+          "perf": "28:14",
+          "meeting": "Border League 5",
+          "venue": "Chester",
+          "position": "51",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "21/04/2019",
+          "perf_raw": "174900",
+          "perf": "29:09",
+          "meeting": "Hale Village 5",
+          "venue": "Hale",
+          "position": "10",
+          "ag": "Veteran 35"
+        }
+      ]
+    },
+    {
+      "event": "50K",
+      "code": "50K",
+      "is_field": false,
+      "pb_raw": "14130",
+      "pb": "2:21",
+      "results": [
+        {
+          "date": "08/10/2022",
+          "perf_raw": "14130",
+          "perf": "2:21",
+          "meeting": "IAU 50K European Championship",
+          "venue": "Sotillo de la Adrada, ESP",
+          "position": "71",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "20 Miles",
+      "code": "20M",
+      "is_field": false,
+      "pb_raw": "7822",
+      "pb": "1:18",
+      "results": [
+        {
+          "date": "06/03/2022",
+          "perf_raw": "7825",
+          "perf": "1:18",
+          "meeting": "Running Grand Prix Oulton P...",
+          "venue": "Tarporley",
+          "position": "10",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "800",
+      "code": "800",
+      "is_field": false,
+      "pb_raw": "15010",
+      "pb": "2:30",
+      "results": [
+        {
+          "date": "04/07/2021",
+          "perf_raw": "15010",
+          "perf": "2:30",
+          "meeting": "North of England League Wes...",
+          "venue": "Ellesmere Port",
+          "position": "4",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "30/05/2001",
+          "perf_raw": "15470",
+          "perf": "2:34",
+          "meeting": "Northern Women`s League Div...",
+          "venue": "Stretford",
+          "position": "1",
+          "ag": "Under 23"
+        }
+      ]
+    },
+    {
+      "event": "Marathon",
+      "code": "Marathon",
+      "is_field": false,
+      "pb_raw": "9724",
+      "pb": "1:37",
+      "results": [
+        {
+          "date": "03/04/2022",
+          "perf_raw": "9727",
+          "perf": "1:37",
+          "meeting": "Therme Manchester Marathon",
+          "venue": "Manchester",
+          "position": "50",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "25/04/2021",
+          "perf_raw": "10082",
+          "perf": "1:40",
+          "meeting": "Cheshire Elite Marathon",
+          "venue": "Pulford",
+          "position": "132",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "28/09/2008",
+          "perf_raw": "11975",
+          "perf": "1:59",
+          "meeting": "Berlin Marathon",
+          "venue": "Berlin, GER",
+          "position": "-",
+          "ag": "Senior"
+        }
+      ]
+    },
+    {
+      "event": "1500",
+      "code": "1500",
+      "is_field": false,
+      "pb_raw": "28031",
+      "pb": "4:40",
+      "results": [
+        {
+          "date": "01/08/2021",
+          "perf_raw": "28980",
+          "perf": "4:49",
+          "meeting": "North of England League Wes...",
+          "venue": "Stretford",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "06/08/2019",
+          "perf_raw": "28031",
+          "perf": "4:40",
+          "meeting": "Trafford AC Grand Prix Open...",
+          "venue": "Stretford",
+          "position": "11",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "09/07/2019",
+          "perf_raw": "28517",
+          "perf": "4:45",
+          "meeting": "Trafford AC Grand Prix Open...",
+          "venue": "Stretford",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "10/08/2019",
+          "perf_raw": "29451",
+          "perf": "4:54",
+          "meeting": "BMAF - British Masters Cham...",
+          "venue": "Birmingham",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "11/09/2019",
+          "perf_raw": "29135",
+          "perf": "4:51",
+          "meeting": "City of London / Highgate H...",
+          "venue": "Parliament Hill",
+          "position": "5",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "16/06/2019",
+          "perf_raw": "30050",
+          "perf": "5:00",
+          "meeting": "North of England League Div...",
+          "venue": "Wigan",
+          "position": "3",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "21/07/2019",
+          "perf_raw": "28530",
+          "perf": "4:45",
+          "meeting": "North of England League Div...",
+          "venue": "Ellesmere Port",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "22/08/2020",
+          "perf_raw": "28217",
+          "perf": "4:42",
+          "meeting": "Trafford Open Series",
+          "venue": "Stretford",
+          "position": "8",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "24/07/2021",
+          "perf_raw": "28767",
+          "perf": "4:47",
+          "meeting": "British Masters AF Regional...",
+          "venue": "Stretford",
+          "position": "3",
+          "ag": "Veteran 40"
+        }
+      ]
+    },
+    {
+      "event": "3000",
+      "code": "3000",
+      "is_field": false,
+      "pb_raw": "59260",
+      "pb": "9:52",
+      "results": [
+        {
+          "date": "01/06/2021",
+          "perf_raw": "62657",
+          "perf": "10:26",
+          "meeting": "Trafford Grand Prix",
+          "venue": "Stretford",
+          "position": "14",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "01/08/2021",
+          "perf_raw": "59260",
+          "perf": "9:52",
+          "meeting": "North of England League Wes...",
+          "venue": "Stretford",
+          "position": "2",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "02/07/2006",
+          "perf_raw": "69690",
+          "perf": "11:36",
+          "meeting": "North of England League Div...",
+          "venue": "Bebington",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "02/08/2009",
+          "perf_raw": "65810",
+          "perf": "10:58",
+          "meeting": "North of England League Div...",
+          "venue": "Hyndburn",
+          "position": "2",
+          "ag": "Senior"
+        },
+        {
+          "date": "04/07/2021",
+          "perf_raw": "65090",
+          "perf": "10:50",
+          "meeting": "North of England League Wes...",
+          "venue": "Ellesmere Port",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "04/08/2019",
+          "perf_raw": "60220",
+          "perf": "10:02",
+          "meeting": "Cheshire League",
+          "venue": "Warrington",
+          "position": "3",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "06/07/2019",
+          "perf_raw": "61080",
+          "perf": "10:10",
+          "meeting": "Cheshire League",
+          "venue": "Warrington",
+          "position": "1",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "07/06/2008",
+          "perf_raw": "66800",
+          "perf": "11:08",
+          "meeting": "North of England League Div...",
+          "venue": "Bebington",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "08/07/2007",
+          "perf_raw": "67950",
+          "perf": "11:19",
+          "meeting": "North of England League Div...",
+          "venue": "Warrington",
+          "position": "-",
+          "ag": "Senior"
+        },
+        {
+          "date": "13/06/2018",
+          "perf_raw": "62460",
+          "perf": "10:24",
+          "meeting": "Wirral AC Endurance Open Se...",
+          "venue": "Bebington",
+          "position": "1",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "22/08/2020",
+          "perf_raw": "60921",
+          "perf": "10:09",
+          "meeting": "Trafford Open Series",
+          "venue": "Stretford",
+          "position": "6",
+          "ag": "Veteran 40"
+        },
+        {
+          "date": "25/07/2017",
+          "perf_raw": "61800",
+          "perf": "10:18",
+          "meeting": "Trafford AC Grand Prix",
+          "venue": "Stretford",
+          "position": "8",
+          "ag": "Veteran 35"
+        },
+        {
+          "date": "27/07/2021",
+          "perf_raw": "59820",
+          "perf": "9:58",
+          "meeting": "Trafford Grand Prix",
+          "venue": "Stretford",
+          "position": "11",
+          "ag": "Veteran 40"
+        }
+      ]
+    }
+  ]
+}

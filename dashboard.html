@@ -1156,7 +1156,10 @@ function renderPo10Charts(d) {
   pairs.forEach((pair, pi) => pair.forEach((e, ei) => {
     if (!e) return;
     const id = `po10-ev-${pi}-${ei}`;
-    const sorted = [...e.results].sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+    // Sort chronologically by converting DD/MM/YYYY → YYYY-MM-DD first
+    const sorted = [...e.results]
+      .map(r => ({...r, _iso: r.date ? r.date.split('/').reverse().join('-') : ''}))
+      .sort((a,b) => a._iso.localeCompare(b._iso));
     const labels = sorted.map(r => {
       const [d,m,y] = (r.date||'').split('/');
       return `${d} ${['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m]||''} '${(y||'').slice(2)}`;
@@ -1227,10 +1230,14 @@ function renderPo10Compare() {
     if (!d) return null;
     const ev = d.events.find(e => e.code === '5K');
     if (!ev) return null;
-    const sorted = [...ev.results].sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+    // Convert DD/MM/YYYY → YYYY-MM-DD before sorting
+    const pts = ev.results
+      .map(r => ({ x: r.date ? r.date.split('/').reverse().join('-') : null, y: csToMins(r.perf_raw) }))
+      .filter(p => p.x && p.y)
+      .sort((a,b) => a.x.localeCompare(b.x));
     return {
       label: a.name,
-      data: sorted.map(r => ({ x: r.date ? r.date.split('/').reverse().join('-') : null, y: csToMins(r.perf_raw) })).filter(p=>p.x&&p.y),
+      data: pts,
       borderColor: PO10_COLORS[ai], backgroundColor: 'transparent',
       borderWidth: 2, pointRadius: 4, tension:.3,
     };

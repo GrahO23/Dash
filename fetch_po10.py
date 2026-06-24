@@ -103,8 +103,12 @@ def scrape_athlete(guid: str) -> dict:
     url = BASE_URL + guid
     print(f"  Fetching {url} …")
     resp = requests.get(url, headers=HEADERS, timeout=20)
+    if resp.status_code == 404:
+        raise ValueError(f"Athlete not found (404) — check the GUID is correct: {guid}")
     resp.raise_for_status()
     src = resp.text
+    if "dataEventName0" not in src:
+        raise ValueError("Page loaded but no athlete data found — the GUID may be invalid or the athlete has no recorded results")
 
     profile = extract_profile(src)
     print(f"  Athlete: {profile.get('name','?')} | {profile.get('club','?')}")

@@ -49,7 +49,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         print("\n  → Running fetch_activities.py ...")
         try:
             result = subprocess.run(
-                [str(python), str(script), "500"],
+                [str(python), str(script), "all"],
                 capture_output=True, text=True, timeout=60, cwd=str(BASE)
             )
             stdout = result.stdout.strip()

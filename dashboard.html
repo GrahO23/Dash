@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garmin Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f1117'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2300d4aa'/><stop offset='100%25' stop-color='%237c6af7'/></linearGradient></defs><circle cx='20' cy='7' r='3' fill='url(%23g)'/><path d='M17 11 l-3 4 l-5 1 l1 2 l4-1 l2 5 l-3 4 l2 1 l4-5 l-1-5 l3-3z' fill='url(%23g)'/></svg>">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3350;
+  --accent: #00d4aa; --accent2: #7c6af7; --accent3: #f97316; --accent4: #e879f9;
+  --text: #e2e8f0; --muted: #8892a4; --danger: #f87171;
+}
+body { background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; font-size:14px; line-height:1.5; min-height:100vh; }
+
+/* HEADER */
+header { background:var(--surface); border-bottom:1px solid var(--border); padding:14px 28px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:20; }
+.logo { display:flex; align-items:center; gap:10px; font-size:17px; font-weight:700; letter-spacing:-0.3px; }
+.logo-icon { width:30px; height:30px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; }
+.header-right { display:flex; align-items:center; gap:14px; }
+#syncMeta { color:var(--muted); font-size:11px; text-align:right; line-height:1.4; }
+#refreshBtn { display:flex; align-items:center; gap:6px; padding:7px 14px; background:var(--accent); color:#0f1117; border:none; border-radius:7px; font-size:12px; font-weight:700; cursor:pointer; transition:opacity .15s,transform .1s; white-space:nowrap; }
+#refreshBtn:hover { opacity:.85; }
+#refreshBtn:active { transform:scale(.97); }
+#refreshBtn:disabled { opacity:.45; cursor:not-allowed; transform:none; }
+#refreshBtn.spinning svg { animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* TABS */
+.tabs { display:flex; gap:4px; padding:0 28px; background:var(--surface); border-bottom:1px solid var(--border); }
+.tab { padding:10px 18px; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; white-space:nowrap; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* MAIN */
+main { max-width:1340px; margin:0 auto; padding:28px; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+/* LOADING */
+#loadingState { display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh; gap:16px; color:var(--muted); }
+.spinner { width:34px; height:34px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; }
+
+/* STAT CARDS */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
+.stats-grid.cols3 { grid-template-columns:repeat(3,1fr); }
+@media(max-width:900px){ .stats-grid { grid-template-columns:repeat(2,1fr); } }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; position:relative; overflow:hidden; transition:border-color .2s; }
+.stat-card:hover { border-color:var(--accent); }
+.stat-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; }
+.stat-card:nth-child(1)::before { background:var(--accent); }
+.stat-card:nth-child(2)::before { background:var(--accent2); }
+.stat-card:nth-child(3)::before { background:var(--accent3); }
+.stat-card:nth-child(4)::before { background:var(--accent4); }
+.stat-label { color:var(--muted); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; margin-bottom:6px; }
+.stat-value { font-size:28px; font-weight:700; letter-spacing:-1px; line-height:1; }
+.stat-sub { color:var(--muted); font-size:11px; margin-top:5px; }
+
+/* CHART GRID */
+.charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+.charts-grid.full { grid-template-columns:1fr; }
+.charts-grid.cols3 { grid-template-columns:1fr 1fr 1fr; }
+@media(max-width:900px){ .charts-grid,.charts-grid.cols3 { grid-template-columns:1fr; } }
+.chart-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.chart-title { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.chart-title .dot { width:7px; height:7px; border-radius:50%; display:inline-block; flex-shrink:0; }
+.chart-wrap { position:relative; height:200px; }
+.chart-wrap.tall { height:260px; }
+.chart-wrap.short { height:140px; }
+
+/* TABLE */
+.table-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:18px; }
+.table-header { padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.table-header-title { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; }
+.export-btns { display:flex; gap:8px; }
+.export-btn { padding:5px 12px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; font-size:11px; font-weight:600; color:var(--muted); cursor:pointer; transition:color .15s,border-color .15s; }
+.export-btn:hover { color:var(--accent); border-color:var(--accent); }
+table { width:100%; border-collapse:collapse; }
+thead th { padding:9px 14px; text-align:left; font-size:10px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; border-bottom:1px solid var(--border); white-space:nowrap; }
+tbody tr { border-bottom:1px solid var(--border); transition:background .15s; }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:hover { background:var(--surface2); }
+tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
+
+/* BADGES & COLOURS */
+.badge { display:inline-flex; align-items:center; padding:2px 7px; border-radius:999px; font-size:10px; font-weight:600; }
+.badge-running    { background:rgba(0,212,170,.18);  color:var(--accent); }
+.badge-treadmill  { background:rgba(0,212,170,.1);   color:#00b891; }
+.badge-strength   { background:rgba(124,106,247,.18);color:var(--accent2); }
+.badge-cycling    { background:rgba(249,115,22,.18); color:var(--accent3); }
+.badge-other      { background:rgba(136,146,164,.15);color:var(--muted); }
+.badge-salou      { background:rgba(124,106,247,.18);color:var(--accent2); }
+.badge-redbridge  { background:rgba(0,212,170,.18);  color:var(--accent); }
+.badge-epping     { background:rgba(249,115,22,.18); color:var(--accent3); }
+.badge-camden     { background:rgba(232,121,249,.18);color:var(--accent4); }
+.badge-loc-other  { background:rgba(136,146,164,.15);color:var(--muted); }
+
+.pace-good { color:var(--accent); font-weight:600; }
+.pace-ok   { color:var(--text); }
+.pace-slow { color:var(--danger); }
+.hr-low    { color:var(--accent); }
+.hr-mid    { color:var(--accent3); }
+.hr-high   { color:var(--danger); font-weight:600; }
+.dist-long { color:var(--accent2); font-weight:700; }
+
+/* TOAST */
+#toast { position:fixed; bottom:22px; right:22px; padding:9px 16px; border-radius:8px; font-size:13px; font-weight:600; opacity:0; transition:opacity .3s; z-index:100; pointer-events:none; }
+#toast.show { opacity:1; }
+#toast.ok  { background:var(--accent); color:#0f1117; }
+#toast.err { background:var(--danger); color:#fff; }
+
+/* DONUT */
+.donut-wrap { position:relative; height:180px; max-width:220px; margin:0 auto; }
+
+/* Legend pills */
+.legend-pills { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.legend-pill { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted); }
+.legend-pill-dot { width:9px; height:9px; border-radius:50%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><div class="logo-icon">🏃</div> Garmin Dashboard</div>
+  <div class="header-right">
+    <div id="syncMeta">Loading…</div>
+    <button id="refreshBtn" onclick="doRefresh()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.29"/></svg>
+      Sync Garmin
+    </button>
+  </div>
+</header>
+
+<div class="tabs" id="tabBar">
+  <div class="tab active" data-tab="overview">Overview</div>
+  <div class="tab" data-tab="running">Running</div>
+  <div class="tab" data-tab="strength">Strength</div>
+  <div class="tab" data-tab="cycling">Cycling</div>
+</div>
+
+<main>
+  <div id="loadingState"><div class="spinner"></div><div>Loading activities…</div></div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="panel-overview">
+    <div class="stats-grid" id="ov-stats"></div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent)"></span>Weekly Activity Volume</div>
+        <div class="chart-wrap tall"><canvas id="ov-weekly"></canvas></div>
+      </div>
+      <div class="chart-card" style="display:flex;flex-direction:column;align-items:center">
+        <div class="chart-title" style="width:100%"><span class="dot" style="background:var(--accent2)"></span>Activity Breakdown</div>
+        <div class="donut-wrap"><canvas id="ov-donut"></canvas></div>
+        <div class="legend-pills" id="ov-legend"></div>
+      </div>
+    </div>
+    <div class="charts-grid full">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Monthly Running Distance (km)</div>
+        <div class="chart-wrap"><canvas id="ov-monthly"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUNNING -->
+  <div class="tab-panel" id="panel-running">
+    <div class="stats-grid" id="run-stats"></div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent)"></span>Pace Over Time (min/km)</div>
+        <div class="chart-wrap tall"><canvas id="run-pace"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--danger)"></span>Heart Rate Over Time (bpm)</div>
+        <div class="chart-wrap tall"><canvas id="run-hr"></canvas></div>
+      </div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Weekly Running Distance (km)</div>
+        <div class="chart-wrap"><canvas id="run-weekly-dist"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Running Power (W)</div>
+        <div class="chart-wrap"><canvas id="run-power"></canvas></div>
+      </div>
+    </div>
+    <div class="charts-grid full">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent4)"></span>Cadence (steps/min)</div>
+        <div class="chart-wrap short"><canvas id="run-cadence"></canvas></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-header">
+        <span class="table-header-title">📋 All Runs</span>
+        <div class="export-btns">
+          <button class="export-btn" onclick="exportData('running','csv')">⬇ CSV</button>
+          <button class="export-btn" onclick="exportData('running','json')">⬇ JSON</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto"><table><thead><tr>
+        <th>Date</th><th>Location</th><th>Type</th><th>Dist</th><th>Duration</th>
+        <th>Pace</th><th>Avg HR</th><th>Max HR</th><th>Power</th><th>Cadence</th><th>Elev ↑</th><th>TE</th>
+      </tr></thead><tbody id="run-table"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- STRENGTH -->
+  <div class="tab-panel" id="panel-strength">
+    <div class="stats-grid" id="str-stats"></div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Sessions Per Week</div>
+        <div class="chart-wrap tall"><canvas id="str-weekly"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Session Duration (min)</div>
+        <div class="chart-wrap tall"><canvas id="str-duration"></canvas></div>
+      </div>
+    </div>
+    <div class="charts-grid full">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent4)"></span>Calories Per Session</div>
+        <div class="chart-wrap short"><canvas id="str-calories"></canvas></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-header">
+        <span class="table-header-title">📋 All Strength Sessions</span>
+        <div class="export-btns">
+          <button class="export-btn" onclick="exportData('strength','csv')">⬇ CSV</button>
+          <button class="export-btn" onclick="exportData('strength','json')">⬇ JSON</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto"><table><thead><tr>
+        <th>Date</th><th>Duration</th><th>Avg HR</th><th>Max HR</th><th>Calories</th><th>TE</th>
+      </tr></thead><tbody id="str-table"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- CYCLING -->
+  <div class="tab-panel" id="panel-cycling">
+    <div class="stats-grid cols3" id="cyc-stats"></div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Distance Per Ride (km)</div>
+        <div class="chart-wrap tall"><canvas id="cyc-dist"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span class="dot" style="background:var(--danger)"></span>Heart Rate (bpm)</div>
+        <div class="chart-wrap tall"><canvas id="cyc-hr"></canvas></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-header">
+        <span class="table-header-title">📋 All Cycling Sessions</span>
+        <div class="export-btns">
+          <button class="export-btn" onclick="exportData('cycling','csv')">⬇ CSV</button>
+          <button class="export-btn" onclick="exportData('cycling','json')">⬇ JSON</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto"><table><thead><tr>
+        <th>Date</th><th>Type</th><th>Location</th><th>Distance</th><th>Duration</th><th>Avg Speed</th><th>Avg HR</th><th>Calories</th>
+      </tr></thead><tbody id="cyc-table"></tbody></table></div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script>
+// ─── Globals ──────────────────────────────────────────────────────────────────
+let allActivities = [];
+let charts = {};
+
+const RUNNING_TYPES   = new Set(['running','treadmill_running','trail_running']);
+const CYCLING_TYPES   = new Set(['cycling','indoor_cycling','mountain_biking','e_bike_fitness']);
+const STRENGTH_TYPES  = new Set(['strength_training']);
+
+// ─── Utilities ────────────────────────────────────────────────────────────────
+function fmtSecs(s) {
+  s = Math.round(s);
+  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+function paceSeconds(distM, durS) {
+  if (!distM || !durS) return null;
+  return durS / (distM / 1000);
+}
+function fmtDate(str, opts = {day:'2-digit',month:'short',year:'numeric'}) {
+  return new Date(str).toLocaleDateString('en-GB', opts);
+}
+function shortDate(str) {
+  const d = new Date(str);
+  return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})} ${String(d.getFullYear()).slice(2)}`;
+}
+function weekKey(str) {
+  const d = new Date(str);
+  const day = d.getDay() || 7;
+  d.setDate(d.getDate() - day + 1);
+  return d.toISOString().slice(0,10);
+}
+function monthKey(str) { return str.slice(0,7); }
+
+function locKey(name) {
+  if (!name) return 'other';
+  const n = name.toLowerCase();
+  if (n.includes('salou'))    return 'salou';
+  if (n.includes('redbridge'))return 'redbridge';
+  if (n.includes('epping'))   return 'epping';
+  if (n.includes('camden'))   return 'camden';
+  return 'other';
+}
+
+const LOC_COLORS = {
+  salou:'rgba(124,106,247,.7)', redbridge:'rgba(0,212,170,.7)',
+  epping:'rgba(249,115,22,.7)', camden:'rgba(232,121,249,.7)', other:'rgba(136,146,164,.55)',
+};
+
+function showToast(msg, type='ok') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = `show ${type}`;
+  clearTimeout(t._t); t._t = setTimeout(() => t.className='', 3500);
+}
+
+// ─── Chart helpers ────────────────────────────────────────────────────────────
+Chart.defaults.color = '#8892a4';
+Chart.defaults.borderColor = '#2e3350';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif";
+Chart.defaults.font.size = 10;
+
+function mk(id, cfg) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id).getContext('2d'), cfg);
+  return charts[id];
+}
+
+function ax(extra={}) {
+  return { grid:{ color:'#2e3350', drawTicks:false }, ticks:{padding:5}, border:{color:'transparent'}, ...extra };
+}
+
+function line(id, labels, datasets, opts={}) {
+  mk(id, {
+    type:'line',
+    data:{ labels, datasets },
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:400},
+      plugins:{ legend:{ display: datasets.length > 1, position:'top', labels:{boxWidth:9,padding:10} }, ...opts.plugins },
+      scales:{ x:ax(), y:ax(), ...opts.scales }
+    }
+  });
+}
+
+function bar(id, labels, datasets, opts={}) {
+  mk(id, {
+    type:'bar',
+    data:{ labels, datasets },
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:400},
+      plugins:{ legend:{ display: datasets.length > 1, position:'top', labels:{boxWidth:9,padding:10} }, ...opts.plugins },
+      scales:{ x:ax(), y:ax(), ...opts.scales }
+    }
+  });
+}
+
+// ─── Stats card ───────────────────────────────────────────────────────────────
+function statCards(id, items) {
+  document.getElementById(id).innerHTML = items.map(s => `
+    <div class="stat-card">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">${s.value}</div>
+      ${s.sub ? `<div class="stat-sub">${s.sub}</div>` : ''}
+    </div>`).join('');
+}
+
+// ─── OVERVIEW ─────────────────────────────────────────────────────────────────
+function renderOverview(acts) {
+  const runs    = acts.filter(a => RUNNING_TYPES.has(a.activityType));
+  const str     = acts.filter(a => STRENGTH_TYPES.has(a.activityType));
+  const cyc     = acts.filter(a => CYCLING_TYPES.has(a.activityType));
+  const totalDistKm = runs.reduce((s,a) => s+(a.distance||0),0)/1000;
+  const totalHours  = acts.reduce((s,a) => s+(a.duration||0),0)/3600;
+
+  statCards('ov-stats', [
+    { label:'Total Activities', value:acts.length, sub:`${shortDate(acts[acts.length-1].startTimeLocal)} → ${shortDate(acts[0].startTimeLocal)}` },
+    { label:'Running Distance', value:`${totalDistKm.toFixed(0)} km`, sub:`across ${runs.length} runs` },
+    { label:'Strength Sessions', value:str.length, sub:`avg ${Math.round(str.reduce((s,a)=>s+(a.duration||0),0)/str.length/60)} min/session` },
+    { label:'Total Hours', value:`${totalHours.toFixed(0)} h`, sub:`of recorded activity` },
+  ]);
+
+  // Weekly stacked bar
+  const weekMap = {};
+  acts.forEach(a => {
+    const w = weekKey(a.startTimeLocal);
+    if (!weekMap[w]) weekMap[w] = {run:0, str:0, cyc:0, other:0};
+    if (RUNNING_TYPES.has(a.activityType))  weekMap[w].run++;
+    else if (STRENGTH_TYPES.has(a.activityType)) weekMap[w].str++;
+    else if (CYCLING_TYPES.has(a.activityType))  weekMap[w].cyc++;
+    else weekMap[w].other++;
+  });
+  const weeks = Object.keys(weekMap).sort();
+  const wLabels = weeks.map(w => { const d=new Date(w); return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})}`; });
+  mk('ov-weekly', {
+    type:'bar',
+    data:{ labels:wLabels, datasets:[
+      { label:'Running',  data:weeks.map(w=>weekMap[w].run),   backgroundColor:'rgba(0,212,170,.7)',   borderRadius:2 },
+      { label:'Strength', data:weeks.map(w=>weekMap[w].str),   backgroundColor:'rgba(124,106,247,.7)', borderRadius:2 },
+      { label:'Cycling',  data:weeks.map(w=>weekMap[w].cyc),   backgroundColor:'rgba(249,115,22,.7)',  borderRadius:2 },
+      { label:'Other',    data:weeks.map(w=>weekMap[w].other), backgroundColor:'rgba(136,146,164,.5)', borderRadius:2 },
+    ]},
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:400},
+      plugins:{ legend:{ position:'top', labels:{boxWidth:9,padding:10} } },
+      scales:{ x:ax({stacked:true, ticks:{maxTicksLimit:16,padding:5}}), y:ax({stacked:true, ticks:{precision:0,padding:5}}) }
+    }
+  });
+
+  // Donut
+  const typeCounts = {};
+  acts.forEach(a => { typeCounts[a.activityType] = (typeCounts[a.activityType]||0)+1; });
+  const top = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const donutColors = ['#00d4aa','#7c6af7','#f97316','#e879f9','#f87171','#8892a4'];
+  mk('ov-donut', {
+    type:'doughnut',
+    data:{ labels:top.map(x=>x[0].replace(/_/g,' ')), datasets:[{ data:top.map(x=>x[1]), backgroundColor:donutColors, borderColor:donutColors, borderWidth:0, hoverOffset:6 }] },
+    options:{ responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{ legend:{display:false} } }
+  });
+  document.getElementById('ov-legend').innerHTML = top.map((x,i)=>
+    `<div class="legend-pill"><div class="legend-pill-dot" style="background:${donutColors[i]}"></div>${x[0].replace(/_/g,' ')} <b style="color:var(--text);margin-left:2px">${x[1]}</b></div>`
+  ).join('');
+
+  // Monthly running distance
+  const monthMap = {};
+  runs.forEach(a => {
+    const m = monthKey(a.startTimeLocal);
+    monthMap[m] = (monthMap[m]||0) + (a.distance||0)/1000;
+  });
+  const months = Object.keys(monthMap).sort();
+  const mLabels = months.map(m => { const [y,mo]=m.split('-'); return `${new Date(+y,+mo-1).toLocaleString('en',{month:'short'})} ${y.slice(2)}`; });
+  bar('ov-monthly', mLabels, [{
+    label:'km', data:months.map(m=>+monthMap[m].toFixed(1)),
+    backgroundColor:'rgba(249,115,22,.65)', borderRadius:4,
+  }], { scales:{ y:{ ...ax(), ticks:{padding:5,callback:v=>`${v}km`} } } });
+}
+
+// ─── RUNNING ──────────────────────────────────────────────────────────────────
+function renderRunning(acts) {
+  const runs = acts.filter(a => RUNNING_TYPES.has(a.activityType))
+                   .sort((a,b) => a.startTimeLocal.localeCompare(b.startTimeLocal));
+
+  const totalKm = runs.reduce((s,a)=>s+(a.distance||0),0)/1000;
+  const shortRuns = runs.filter(a=>a.distance>3000 && a.distance<9000);
+  const avgPaceS = shortRuns.length ? shortRuns.reduce((s,a)=>s+paceSeconds(a.distance,a.duration),0)/shortRuns.length : null;
+  const avgHR = Math.round(runs.reduce((s,a)=>s+(a.averageHR||0),0)/runs.length);
+  const best = shortRuns.length ? shortRuns.reduce((b,a)=> paceSeconds(a.distance,a.duration)<paceSeconds(b.distance,b.duration)?a:b) : null;
+
+  statCards('run-stats',[
+    { label:'Total Runs',       value:runs.length, sub:`${totalKm.toFixed(0)} km total` },
+    { label:'Total Distance',   value:`${totalKm.toFixed(0)} km`, sub:`avg ${(totalKm/runs.length).toFixed(1)} km/run` },
+    { label:'Avg Pace (5–9km)', value:avgPaceS ? fmtSecs(avgPaceS) : '—', sub:best ? `best ${fmtSecs(paceSeconds(best.distance,best.duration))} on ${fmtDate(best.startTimeLocal,{day:'numeric',month:'short'})}` : '' },
+    { label:'Avg Heart Rate',   value:`${avgHR} bpm`, sub:`range ${Math.min(...runs.filter(r=>r.averageHR).map(r=>r.averageHR))}–${Math.max(...runs.map(r=>r.averageHR))} bpm` },
+  ]);
+
+  const labels = runs.map(r=>shortDate(r.startTimeLocal));
+
+  // Pace
+  mk('run-pace',{
+    type:'scatter',
+    data:{ datasets:[{ label:'Pace', data:runs.map(r=>({ x:r.startTimeLocal, y:paceSeconds(r.distance,r.duration)/60 })),
+      backgroundColor: runs.map(r=>RUNNING_TYPES.has(r.activityType)&&r.activityType!=='running'?'rgba(0,184,145,.5)':'rgba(0,212,170,.55)'),
+      pointRadius:4, pointHoverRadius:6 }]},
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:ctx=>` ${fmtSecs(ctx.raw.y*60)} /km  ${(ctx.raw.y>0?(fmtDate(ctx.raw.x,{day:'numeric',month:'short'})):'')}` } } },
+      scales:{ x:ax({ type:'time', time:{unit:'month'}, ticks:{maxTicksLimit:14,padding:5} }),
+        y:ax({ reverse:true, ticks:{ padding:5, callback:v=>fmtSecs(v*60) } }) }
+    }
+  });
+
+  // HR
+  line('run-hr', labels,
+    [{ label:'Avg HR', data:runs.map(r=>r.averageHR), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,.07)', borderWidth:1.5, pointRadius:2, tension:.3, fill:true },
+     { label:'Max HR', data:runs.map(r=>r.maxHR),    borderColor:'rgba(248,113,113,.3)', borderDash:[3,3], borderWidth:1, pointRadius:0, tension:.3 }],
+    { scales:{ x:ax({ticks:{maxTicksLimit:16,padding:5}}), y:ax({min:110,ticks:{padding:5}}) } }
+  );
+
+  // Weekly distance
+  const wdMap = {};
+  runs.forEach(a=>{ const w=weekKey(a.startTimeLocal); wdMap[w]=(wdMap[w]||0)+(a.distance||0)/1000; });
+  const wdWeeks = Object.keys(wdMap).sort();
+  bar('run-weekly-dist', wdWeeks.map(w=>{ const d=new Date(w); return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})}`; }),
+    [{ label:'km', data:wdWeeks.map(w=>+wdMap[w].toFixed(1)), backgroundColor:'rgba(124,106,247,.65)', borderRadius:3 }],
+    { scales:{ y:ax({ticks:{padding:5,callback:v=>`${v}km`}}) } }
+  );
+
+  // Power
+  const pwrRuns = runs.filter(r=>r.avgPower);
+  mk('run-power',{
+    type:'scatter',
+    data:{ datasets:[{ label:'Power', data:pwrRuns.map(r=>({x:r.startTimeLocal,y:r.avgPower})),
+      backgroundColor:'rgba(249,115,22,.55)', pointRadius:4, pointHoverRadius:6 }]},
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
+      plugins:{ legend:{display:false} },
+      scales:{ x:ax({type:'time',time:{unit:'month'},ticks:{maxTicksLimit:14,padding:5}}),
+               y:ax({ticks:{padding:5,callback:v=>`${v}W`}}) }
+    }
+  });
+
+  // Cadence
+  const cadRuns = runs.filter(r=>r.averageRunningCadenceInStepsPerMinute);
+  bar('run-cadence',
+    cadRuns.map(r=>shortDate(r.startTimeLocal)),
+    [{ label:'spm', data:cadRuns.map(r=>Math.round(r.averageRunningCadenceInStepsPerMinute)), backgroundColor:'rgba(232,121,249,.6)', borderRadius:3 }],
+    { scales:{ x:ax({ticks:{maxTicksLimit:20,padding:5}}), y:ax({min:150,ticks:{padding:5}}) } }
+  );
+
+  // Table (newest first)
+  document.getElementById('run-table').innerHTML = [...runs].reverse().map(r => {
+    const ps = paceSeconds(r.distance,r.duration);
+    const pClass = ps<=340?'pace-good':ps<=380?'pace-ok':'pace-slow';
+    const hClass = (r.averageHR||0)<=135?'hr-low':(r.averageHR||0)<=150?'hr-mid':'hr-high';
+    const lk = locKey(r.locationName);
+    const typeLabel = r.activityType==='treadmill_running'?'🏃 Treadmill':r.activityType==='trail_running'?'🌲 Trail':'🏃 Road';
+    return `<tr>
+      <td>${fmtDate(r.startTimeLocal)}</td>
+      <td>${r.locationName?`<span class="badge badge-${lk}">${r.locationName}</span>`:'—'}</td>
+      <td style="color:var(--muted);font-size:11px">${typeLabel}</td>
+      <td class="${(r.distance||0)>8000?'dist-long':''}">${((r.distance||0)/1000).toFixed(2)} km</td>
+      <td>${fmtSecs(r.duration)}</td>
+      <td class="${pClass}">${ps?fmtSecs(ps)+' /km':'—'}</td>
+      <td class="${hClass}">${r.averageHR||'—'} ${r.averageHR?'bpm':''}</td>
+      <td style="color:var(--muted)">${r.maxHR||'—'} ${r.maxHR?'bpm':''}</td>
+      <td>${r.avgPower?r.avgPower+' W':'—'}</td>
+      <td>${r.averageRunningCadenceInStepsPerMinute?Math.round(r.averageRunningCadenceInStepsPerMinute)+' spm':'—'}</td>
+      <td style="color:var(--muted)">${r.elevationGain?Math.round(r.elevationGain)+' m':'—'}</td>
+      <td>${r.aerobicTrainingEffect?r.aerobicTrainingEffect.toFixed(1):'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── STRENGTH ─────────────────────────────────────────────────────────────────
+function renderStrength(acts) {
+  const str = acts.filter(a=>STRENGTH_TYPES.has(a.activityType))
+                  .sort((a,b)=>a.startTimeLocal.localeCompare(b.startTimeLocal));
+
+  const totalMins = str.reduce((s,a)=>s+(a.duration||0),0)/60;
+  const avgMins   = totalMins/str.length;
+  const totalCal  = str.reduce((s,a)=>s+(a.calories||0),0);
+
+  statCards('str-stats',[
+    { label:'Total Sessions', value:str.length, sub:`since ${fmtDate(str[0].startTimeLocal,{month:'short',year:'numeric'})}` },
+    { label:'Total Time',     value:`${(totalMins/60).toFixed(0)} h`, sub:`avg ${Math.round(avgMins)} min/session` },
+    { label:'Total Calories', value:totalCal.toLocaleString(), sub:`avg ${Math.round(totalCal/str.length)} kcal/session` },
+    { label:'Weekly Avg',     value:`${(str.length / (Object.keys(Object.fromEntries(str.map(a=>[weekKey(a.startTimeLocal),1])))).length).toFixed(1)}`, sub:`sessions/week` },
+  ]);
+
+  // Sessions per week
+  const swMap = {};
+  str.forEach(a=>{ const w=weekKey(a.startTimeLocal); swMap[w]=(swMap[w]||0)+1; });
+  const swWeeks = Object.keys(swMap).sort();
+  bar('str-weekly', swWeeks.map(w=>{ const d=new Date(w); return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})}`; }),
+    [{ label:'Sessions', data:swWeeks.map(w=>swMap[w]), backgroundColor:'rgba(124,106,247,.65)', borderRadius:3 }],
+    { scales:{ y:ax({ticks:{precision:0,padding:5}}) } }
+  );
+
+  // Duration trend
+  mk('str-duration',{
+    type:'scatter',
+    data:{ datasets:[{ label:'Duration (min)', data:str.map(a=>({x:a.startTimeLocal,y:+(a.duration/60).toFixed(1)})),
+      backgroundColor:'rgba(249,115,22,.55)', pointRadius:4, pointHoverRadius:6 }]},
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:ctx=>`${ctx.raw.y} min` } } },
+      scales:{ x:ax({type:'time',time:{unit:'month'},ticks:{maxTicksLimit:14,padding:5}}),
+               y:ax({ticks:{padding:5,callback:v=>`${v}m`}}) }
+    }
+  });
+
+  // Calories
+  const calStr = str.filter(a=>a.calories);
+  bar('str-calories',
+    calStr.map(a=>shortDate(a.startTimeLocal)),
+    [{ label:'kcal', data:calStr.map(a=>Math.round(a.calories)), backgroundColor:'rgba(232,121,249,.55)', borderRadius:3 }],
+    { scales:{ x:ax({ticks:{maxTicksLimit:20,padding:5}}), y:ax({ticks:{padding:5,callback:v=>`${v}`}}) } }
+  );
+
+  // Table
+  document.getElementById('str-table').innerHTML = [...str].reverse().map(a=>`
+    <tr>
+      <td>${fmtDate(a.startTimeLocal)}</td>
+      <td>${fmtSecs(a.duration)}</td>
+      <td class="${(a.averageHR||0)<=100?'hr-low':'hr-mid'}">${a.averageHR||'—'} ${a.averageHR?'bpm':''}</td>
+      <td style="color:var(--muted)">${a.maxHR||'—'} ${a.maxHR?'bpm':''}</td>
+      <td>${a.calories?Math.round(a.calories)+' kcal':'—'}</td>
+      <td>${a.aerobicTrainingEffect?a.aerobicTrainingEffect.toFixed(1):'—'}</td>
+    </tr>`).join('');
+}
+
+// ─── CYCLING ──────────────────────────────────────────────────────────────────
+function renderCycling(acts) {
+  const cyc = acts.filter(a=>CYCLING_TYPES.has(a.activityType))
+                  .sort((a,b)=>a.startTimeLocal.localeCompare(b.startTimeLocal));
+
+  const totalKm  = cyc.reduce((s,a)=>s+(a.distance||0),0)/1000;
+  const avgHR    = cyc.filter(a=>a.averageHR).length ? Math.round(cyc.filter(a=>a.averageHR).reduce((s,a)=>s+a.averageHR,0)/cyc.filter(a=>a.averageHR).length) : 0;
+
+  statCards('cyc-stats',[
+    { label:'Total Rides',    value:cyc.length },
+    { label:'Total Distance', value:`${totalKm.toFixed(1)} km`, sub:`avg ${(totalKm/cyc.length).toFixed(1)} km/ride` },
+    { label:'Avg Heart Rate', value:`${avgHR||'—'} bpm` },
+  ]);
+
+  const labels = cyc.map(a=>shortDate(a.startTimeLocal));
+
+  // Distance
+  bar('cyc-dist', labels,
+    [{ label:'km', data:cyc.map(a=>+((a.distance||0)/1000).toFixed(2)), backgroundColor:'rgba(249,115,22,.65)', borderRadius:4 }],
+    { scales:{ y:ax({ticks:{padding:5,callback:v=>`${v}km`}}) } }
+  );
+
+  // HR
+  line('cyc-hr', labels,
+    [{ label:'Avg HR', data:cyc.map(a=>a.averageHR||null), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,.07)', borderWidth:2, pointRadius:4, tension:.3, fill:true }],
+    { scales:{ y:ax({ticks:{padding:5,callback:v=>`${v}`}}) } }
+  );
+
+  const typeLabel = t => ({ cycling:'🚴 Outdoor', indoor_cycling:'🚴 Indoor', mountain_biking:'⛰️ MTB', e_bike_fitness:'⚡ E-Bike' }[t]||t);
+  document.getElementById('cyc-table').innerHTML = [...cyc].reverse().map(a=>`
+    <tr>
+      <td>${fmtDate(a.startTimeLocal)}</td>
+      <td style="font-size:11px;color:var(--muted)">${typeLabel(a.activityType)}</td>
+      <td>${a.locationName?`<span class="badge badge-loc-other">${a.locationName}</span>`:'—'}</td>
+      <td>${((a.distance||0)/1000).toFixed(2)} km</td>
+      <td>${fmtSecs(a.duration)}</td>
+      <td>${a.averageSpeed?(a.averageSpeed*3.6).toFixed(1)+' km/h':'—'}</td>
+      <td>${a.averageHR?a.averageHR+' bpm':'—'}</td>
+      <td>${a.calories?Math.round(a.calories)+' kcal':'—'}</td>
+    </tr>`).join('');
+}
+
+// ─── EXPORT ───────────────────────────────────────────────────────────────────
+function exportData(type, fmt) {
+  let items;
+  if (type==='running')  items = allActivities.filter(a=>RUNNING_TYPES.has(a.activityType));
+  if (type==='strength') items = allActivities.filter(a=>STRENGTH_TYPES.has(a.activityType));
+  if (type==='cycling')  items = allActivities.filter(a=>CYCLING_TYPES.has(a.activityType));
+
+  const filename = `garmin_${type}_${new Date().toISOString().slice(0,10)}`;
+
+  if (fmt==='json') {
+    const blob = new Blob([JSON.stringify({exported_at:new Date().toISOString(), count:items.length, activities:items},null,2)],{type:'application/json'});
+    dl(blob, filename+'.json');
+  } else {
+    if (!items.length) return;
+    const keys = [...new Set(items.flatMap(i=>Object.keys(i)))];
+    const rows = [keys.join(','), ...items.map(i=>keys.map(k=>{ const v=i[k]; return v==null?'':String(v).includes(',')?`"${v}"`:v; }).join(','))];
+    const blob = new Blob([rows.join('\n')],{type:'text/csv'});
+    dl(blob, filename+'.csv');
+  }
+  showToast(`✓ Exported ${items.length} ${type} activities as ${fmt.toUpperCase()}`, 'ok');
+}
+
+function dl(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+}
+
+// ─── RENDER ALL ───────────────────────────────────────────────────────────────
+function render(data) {
+  allActivities = data.activities;
+  const acts = allActivities;
+
+  renderOverview(acts);
+  renderRunning(acts);
+  renderStrength(acts);
+  renderCycling(acts);
+
+  const synced = new Date(data.fetched_at);
+  document.getElementById('syncMeta').innerHTML =
+    `Synced ${fmtDate(data.fetched_at)} · ${synced.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}<br>
+     <span style="opacity:.6">${acts.length} activities total</span>`;
+
+  document.getElementById('loadingState').style.display = 'none';
+  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = p.id === 'panel-overview' ? 'block' : 'none');
+  document.querySelectorAll('.tab-panel.active').forEach(p => { if (p.id !== 'panel-overview') p.classList.remove('active'); });
+  document.querySelector('.tab-panel#panel-overview').style.display = 'block';
+}
+
+// ─── TABS ─────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.tab).style.display = 'block';
+  });
+});
+
+// ─── LOAD & REFRESH ───────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const res = await fetch('/activities.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    render(await res.json());
+  } catch(e) {
+    document.getElementById('loadingState').innerHTML =
+      `<div style="color:var(--danger);text-align:center">
+        <div style="font-size:24px;margin-bottom:8px">⚠️</div>
+        <div>Could not load activities.json</div>
+        <div style="color:var(--muted);margin-top:4px;font-size:12px">Start the server: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px">python serve.py</code></div>
+        <button onclick="loadData()" style="margin-top:16px;padding:8px 16px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px">Retry</button>
+      </div>`;
+  }
+}
+
+async function doRefresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled=true; btn.classList.add('spinning');
+  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.29"/></svg> Syncing…`;
+  try {
+    const res  = await fetch('/refresh', {method:'POST'});
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error||'Unknown error');
+    render(json.data);
+    showToast('✓ Synced 500 activities from Garmin Connect', 'ok');
+  } catch(e) {
+    showToast(`✗ ${e.message}`, 'err');
+  } finally {
+    btn.disabled=false; btn.classList.remove('spinning');
+    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.29"/></svg> Sync Garmin`;
+  }
+}
+
+// Chart.js time adapter (needed for scatter time axis)
+const _orig = Chart.defaults.scales;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script>loadData();</script>
+</body>
+</html>

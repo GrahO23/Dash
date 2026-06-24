@@ -126,6 +126,13 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 .toggle-btn { padding:4px 11px; border:none; background:transparent; color:var(--muted); font-size:11px; font-weight:600; border-radius:5px; cursor:pointer; transition:background .15s,color .15s; }
 .toggle-btn:hover { color:var(--text); }
 .toggle-btn.active { background:var(--surface2); color:var(--text); }
+
+/* RANGE BAR */
+.range-bar { display:flex; align-items:center; gap:6px; margin-bottom:22px; }
+.range-bar span { font-size:11px; color:var(--muted); font-weight:600; margin-right:4px; text-transform:uppercase; letter-spacing:.6px; }
+.range-btn { padding:5px 14px; border:1px solid var(--border); background:transparent; color:var(--muted); font-size:12px; font-weight:600; border-radius:6px; cursor:pointer; transition:background .15s,color .15s,border-color .15s; }
+.range-btn:hover { color:var(--text); border-color:var(--muted); }
+.range-btn.active { background:var(--accent); border-color:var(--accent); color:#0f1117; }
 </style>
 </head>
 <body>
@@ -175,6 +182,13 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 
   <!-- RUNNING -->
   <div class="tab-panel" id="panel-running">
+    <div class="range-bar">
+      <span>Range</span>
+      <button class="range-btn" onclick="setRunRange(1,this)">1 Year</button>
+      <button class="range-btn" onclick="setRunRange(2,this)">2 Years</button>
+      <button class="range-btn" onclick="setRunRange(5,this)">5 Years</button>
+      <button class="range-btn active" onclick="setRunRange(0,this)">All Time</button>
+    </div>
     <div class="stats-grid" id="run-stats"></div>
     <div class="charts-grid">
       <div class="chart-card">
@@ -411,6 +425,26 @@ function statCards(id, items) {
     </div>`).join('');
 }
 
+// ─── RUN RANGE FILTER ────────────────────────────────────────────────────────
+let _allRuns = [];
+let _runYears = 0; // 0 = all time
+
+function setRunRange(years, btn) {
+  _runYears = years;
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = filterRuns(_allRuns, years);
+  renderRunningCharts(filtered);
+}
+
+function filterRuns(runs, years) {
+  if (!years) return runs;
+  const cutoff = new Date();
+  cutoff.setFullYear(cutoff.getFullYear() - years);
+  const cutStr = cutoff.toISOString().slice(0,10);
+  return runs.filter(r => r.startTimeLocal.slice(0,10) >= cutStr);
+}
+
 // ─── PACE & DISTANCE TREND HELPERS ───────────────────────────────────────────
 let _trendRuns = [];
 let _pacePeriod = 'week';
@@ -567,8 +601,12 @@ function renderOverview(acts) {
 
 // ─── RUNNING ──────────────────────────────────────────────────────────────────
 function renderRunning(acts) {
-  const runs = acts.filter(a => RUNNING_TYPES.has(a.activityType))
-                   .sort((a,b) => a.startTimeLocal.localeCompare(b.startTimeLocal));
+  _allRuns = acts.filter(a => RUNNING_TYPES.has(a.activityType))
+                 .sort((a,b) => a.startTimeLocal.localeCompare(b.startTimeLocal));
+  renderRunningCharts(filterRuns(_allRuns, _runYears));
+}
+
+function renderRunningCharts(runs) {
   _trendRuns = runs;
 
   const totalKm = runs.reduce((s,a)=>s+(a.distance||0),0)/1000;

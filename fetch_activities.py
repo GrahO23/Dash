@@ -94,17 +94,32 @@ def main():
         print(f"Fetching last {n} activities…")
         raw = fetch_n(client, n)
 
-    activities = [slim(a) for a in raw]
+    fetched = [slim(a) for a in raw]
+
+    out_path = Path(__file__).parent / "activities.json"
+
+    # Load existing data and merge — new fetched entries win on conflict
+    existing: dict = {}
+    if out_path.exists():
+        try:
+            old = json.loads(out_path.read_text())
+            existing = {a["activityId"]: a for a in old.get("activities", [])}
+        except Exception:
+            pass
+
+    for a in fetched:
+        existing[a["activityId"]] = a
+
+    merged = sorted(existing.values(), key=lambda x: x.get("startTimeLocal", ""), reverse=True)
 
     out = {
         "fetched_at": datetime.now().isoformat(),
-        "count": len(activities),
-        "activities": activities,
+        "count": len(merged),
+        "activities": merged,
     }
 
-    out_path = Path(__file__).parent / "activities.json"
     out_path.write_text(json.dumps(out, indent=2))
-    print(f"Saved {len(activities)} activities → activities.json")
+    print(f"Saved {len(merged)} activities → activities.json ({len(fetched)} new/updated)")
 
 
 if __name__ == "__main__":

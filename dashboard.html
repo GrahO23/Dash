@@ -258,6 +258,11 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
       <button class="range-btn" onclick="setRunRange(2,this)">2 Years</button>
       <button class="range-btn" onclick="setRunRange(5,this)">5 Years</button>
       <button class="range-btn active" onclick="setRunRange(0,this)">All Time</button>
+      <span style="margin-left:auto">Density</span>
+      <input type="range" id="runStrideSlider" min="1" max="10" value="1"
+        oninput="setRunStride(+this.value)"
+        style="width:88px;accent-color:var(--accent);cursor:pointer;vertical-align:middle">
+      <span id="runStrideLabel" style="min-width:30px;text-align:right;font-size:11px;font-weight:600;color:var(--text)">All</span>
     </div>
     <div class="stats-grid" id="run-stats"></div>
     <div class="charts-grid">
@@ -613,6 +618,35 @@ function ax(extra={}) {
   return { grid:{ color:'#2e3350', drawTicks:false }, ticks:{padding:5}, border:{color:'transparent'}, ...extra };
 }
 
+function linReg(pts) {
+  // pts: [{x: dateString, y: number}] → returns two endpoints for a trend line
+  const valid = pts.filter(p=>p.y!=null&&isFinite(p.y));
+  if (valid.length < 2) return [];
+  const xs = valid.map(p=>new Date(p.x).getTime());
+  const ys = valid.map(p=>p.y);
+  const n = xs.length;
+  const mx = xs.reduce((a,b)=>a+b,0)/n;
+  const my = ys.reduce((a,b)=>a+b,0)/n;
+  const denom = xs.reduce((s,x)=>s+(x-mx)**2,0);
+  if (!denom) return [];
+  const slope = xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/denom;
+  const intercept = my - slope*mx;
+  const x0=Math.min(...xs), x1=Math.max(...xs);
+  return [{x:new Date(x0).toISOString(),y:slope*x0+intercept},{x:new Date(x1).toISOString(),y:slope*x1+intercept}];
+}
+
+function linRegIdx(values) {
+  // Index-based regression for label-array charts; returns array of trend values
+  const pts = values.map((y,x)=>({x,y})).filter(p=>p.y!=null&&!isNaN(p.y)&&isFinite(p.y));
+  const n = pts.length;
+  if (n < 3) return null;
+  const sx=pts.reduce((s,p)=>s+p.x,0), sy=pts.reduce((s,p)=>s+p.y,0);
+  const sxy=pts.reduce((s,p)=>s+p.x*p.y,0), sx2=pts.reduce((s,p)=>s+p.x*p.x,0);
+  const m = (n*sxy-sx*sy)/(n*sx2-sx*sx);
+  const b = (sy-m*sx)/n;
+  return values.map((_,i) => +(m*i+b).toFixed(4));
+}
+
 function line(id, labels, datasets, opts={}) {
   mk(id, {
     type:'line',
@@ -648,6 +682,17 @@ function statCards(id, items) {
 // ─── RUN RANGE FILTER ────────────────────────────────────────────────────────
 let _allRuns = [];
 let _runYears = 0; // 0 = all time
+let _runStride = 1; // show every Nth scatter point (1 = all)
+
+function thinBy(arr, n) {
+  return n <= 1 ? arr : arr.filter((_, i) => i % n === 0);
+}
+
+function setRunStride(n) {
+  _runStride = n;
+  document.getElementById('runStrideLabel').textContent = n <= 1 ? 'All' : `1/${n}`;
+  renderRunningCharts(_trendRuns);
+}
 
 function setRunRange(years, btn) {
   _runYears = years;
@@ -845,24 +890,48 @@ function renderRunningCharts(runs) {
   const labels = runs.map(r=>shortDate(r.startTimeLocal));
 
   // Pace
+  const paceAll = runs.map(r=>{
+    const y = paceSeconds(r.distance,r.duration)/60;
+    return { x:r.startTimeLocal, y:y>0&&y<20?y:null,
+             color:RUNNING_TYPES.has(r.activityType)&&r.activityType!=='running'?'rgba(0,184,145,.3)':'rgba(0,212,170,.3)' };
+  }).filter(p=>p.y!=null);
+  const paceTrend = linReg(paceAll);
+  const pacePts = thinBy(paceAll, _runStride);
   mk('run-pace',{
     type:'scatter',
-    data:{ datasets:[{ label:'Pace', data:runs.map(r=>({ x:r.startTimeLocal, y:paceSeconds(r.distance,r.duration)/60 })),
-      backgroundColor: runs.map(r=>RUNNING_TYPES.has(r.activityType)&&r.activityType!=='running'?'rgba(0,184,145,.5)':'rgba(0,212,170,.55)'),
-      pointRadius:4, pointHoverRadius:6 }]},
+    data:{ datasets:[
+      { label:'Pace', data:pacePts.map(p=>({x:p.x,y:p.y})),
+        backgroundColor:pacePts.map(p=>p.color), pointRadius:3, pointHoverRadius:5 },
+      { label:'Trend', data:paceTrend, type:'line', borderColor:'rgba(0,212,170,.95)', backgroundColor:'transparent',
+        borderWidth:2, pointRadius:0, tension:0 }
+    ]},
     options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
-      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:ctx=>` ${fmtSecs(ctx.raw.y*60)} /km  ${(ctx.raw.y>0?(fmtDate(ctx.raw.x,{day:'numeric',month:'short'})):'')}` } } },
+      plugins:{ legend:{display:false},
+        tooltip:{ filter:ctx=>ctx.datasetIndex===0, callbacks:{ label:ctx=>` ${fmtSecs(ctx.raw.y*60)} /km  ${fmtDate(ctx.raw.x,{day:'numeric',month:'short'})}` } } },
       scales:{ x:ax({ type:'time', time:{unit:'month'}, ticks:{maxTicksLimit:14,padding:5} }),
         y:ax({ reverse:true, ticks:{ padding:5, callback:v=>fmtSecs(v*60) } }) }
     }
   });
 
-  // HR
-  line('run-hr', labels,
-    [{ label:'Avg HR', data:runs.map(r=>r.averageHR), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,.07)', borderWidth:1.5, pointRadius:2, tension:.3, fill:true },
-     { label:'Max HR', data:runs.map(r=>r.maxHR),    borderColor:'rgba(248,113,113,.3)', borderDash:[3,3], borderWidth:1, pointRadius:0, tension:.3 }],
-    { scales:{ x:ax({ticks:{maxTicksLimit:16,padding:5}}), y:ax({min:110,ticks:{padding:5}}) } }
-  );
+  // HR — scatter points + trend lines
+  const hrData    = runs.filter(r=>r.averageHR).map(r=>({x:r.startTimeLocal, y:r.averageHR}));
+  const maxHrData = runs.filter(r=>r.maxHR).map(r=>({x:r.startTimeLocal, y:r.maxHR}));
+  mk('run-hr',{
+    type:'scatter',
+    data:{ datasets:[
+      { label:'Avg HR',    data:thinBy(hrData,_runStride),    backgroundColor:'rgba(248,113,113,.45)', pointRadius:3, pointHoverRadius:5 },
+      { label:'Max HR',    data:thinBy(maxHrData,_runStride), backgroundColor:'rgba(248,113,113,.18)', pointRadius:2, pointHoverRadius:4 },
+      { label:'Avg Trend', data:linReg(hrData),    type:'line', borderColor:'rgba(248,113,113,.95)', backgroundColor:'transparent', borderWidth:2, pointRadius:0, tension:0 },
+      { label:'Max Trend', data:linReg(maxHrData), type:'line', borderColor:'rgba(248,113,113,.45)', backgroundColor:'transparent', borderWidth:1.5, pointRadius:0, tension:0, borderDash:[4,3] },
+    ]},
+    options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
+      plugins:{
+        legend:{ display:true, position:'top', labels:{ boxWidth:9, padding:10, filter:item=>item.datasetIndex<2 } },
+        tooltip:{ filter:ctx=>ctx.datasetIndex<2 }
+      },
+      scales:{ x:ax({type:'time',time:{unit:'month'},ticks:{maxTicksLimit:16,padding:5}}), y:ax({min:110,ticks:{padding:5}}) }
+    }
+  });
 
   // Weekly distance
   const wdMap = {};
@@ -875,22 +944,33 @@ function renderRunningCharts(runs) {
 
   // Power
   const pwrRuns = runs.filter(r=>r.avgPower);
+  const pwrData = pwrRuns.map(r=>({x:r.startTimeLocal,y:r.avgPower}));
+  const pwrTrend = linReg(pwrData);
   mk('run-power',{
     type:'scatter',
-    data:{ datasets:[{ label:'Power', data:pwrRuns.map(r=>({x:r.startTimeLocal,y:r.avgPower})),
-      backgroundColor:'rgba(249,115,22,.55)', pointRadius:4, pointHoverRadius:6 }]},
+    data:{ datasets:[
+      { label:'Power', data:thinBy(pwrData,_runStride), backgroundColor:'rgba(249,115,22,.4)', pointRadius:3, pointHoverRadius:5 },
+      { label:'Trend', data:pwrTrend, type:'line', borderColor:'rgba(249,115,22,.95)', backgroundColor:'transparent',
+        borderWidth:2, pointRadius:0, tension:0 },
+    ]},
     options:{ responsive:true, maintainAspectRatio:false, animation:{duration:300},
-      plugins:{ legend:{display:false} },
+      plugins:{ legend:{display:false}, tooltip:{filter:ctx=>ctx.datasetIndex===0} },
       scales:{ x:ax({type:'time',time:{unit:'month'},ticks:{maxTicksLimit:14,padding:5}}),
                y:ax({ticks:{padding:5,callback:v=>`${v}W`}}) }
     }
   });
 
-  // Cadence
-  const cadRuns = runs.filter(r=>r.averageRunningCadenceInStepsPerMinute);
+  // Cadence — weekly averages to reduce per-run noise
+  const cadWeekMap = {};
+  runs.filter(r=>r.averageRunningCadenceInStepsPerMinute).forEach(r=>{
+    const w=weekKey(r.startTimeLocal);
+    if(!cadWeekMap[w])cadWeekMap[w]={sum:0,n:0};
+    cadWeekMap[w].sum+=r.averageRunningCadenceInStepsPerMinute; cadWeekMap[w].n++;
+  });
+  const cadWeeks = Object.keys(cadWeekMap).sort();
   bar('run-cadence',
-    cadRuns.map(r=>shortDate(r.startTimeLocal)),
-    [{ label:'spm', data:cadRuns.map(r=>Math.round(r.averageRunningCadenceInStepsPerMinute)), backgroundColor:'rgba(232,121,249,.6)', borderRadius:3 }],
+    cadWeeks.map(w=>{const d=new Date(w);return `${d.getDate()} ${d.toLocaleString('en',{month:'short'})} '${String(d.getFullYear()).slice(2)}`;}),
+    [{ label:'spm', data:cadWeeks.map(w=>Math.round(cadWeekMap[w].sum/cadWeekMap[w].n)), backgroundColor:'rgba(232,121,249,.6)', borderRadius:3 }],
     { scales:{ x:ax({ticks:{maxTicksLimit:20,padding:5}}), y:ax({min:150,ticks:{padding:5}}) } }
   );
 
@@ -1360,21 +1440,31 @@ function renderPo10Charts(d) {
     const values = sorted.map(r => csToMins(r.perf_raw));
     const isField = e.is_field;
 
+    const trendValues = linRegIdx(values);
+    const evDatasets = [{
+      label: e.event,
+      data: values,
+      borderColor: PO10_COLORS[ei],
+      backgroundColor: 'transparent',
+      borderWidth: 1.5,
+      pointRadius: sorted.length > 12 ? 2 : 4,
+      pointBackgroundColor: PO10_COLORS[ei],
+      tension: .2, fill: false,
+    }];
+    if (trendValues && sorted.length >= 4) evDatasets.push({
+      label: 'Trend', data: trendValues,
+      borderColor: PO10_COLORS[ei], backgroundColor: 'transparent',
+      borderWidth: 2.5, borderDash: [6,4], pointRadius: 0, tension: 0, fill: false,
+    });
     mk(id, {
       type: 'line',
-      data: { labels, datasets: [{
-        label: e.event,
-        data: values,
-        borderColor: PO10_COLORS[ei],
-        backgroundColor: PO10_COLORS[ei].replace(')', ',.1)').replace('rgb','rgba'),
-        borderWidth: 2, pointRadius: 5, pointBackgroundColor: PO10_COLORS[ei],
-        tension: .3, fill: true,
-      }]},
+      data: { labels, datasets: evDatasets },
       options: {
         responsive: true, maintainAspectRatio: false, animation:{duration:350},
-        plugins: { legend:{display:false}, tooltip:{ callbacks:{
-          label: ctx => isField ? ` ${ctx.raw}` : ` ${fmtSecs(ctx.raw*60)}`
-        }}},
+        plugins: { legend:{display:false}, tooltip:{
+          filter: ctx => ctx.datasetIndex === 0,
+          callbacks:{ label: ctx => isField ? ` ${ctx.raw}` : ` ${fmtSecs(ctx.raw*60)}` }
+        }},
         scales: {
           x: ax(),
           y: ax({ reverse: !isField, ticks:{ padding:5, callback: v => isField ? v : fmtSecs(v*60) } })

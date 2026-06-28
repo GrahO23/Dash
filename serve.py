@@ -161,7 +161,7 @@ if __name__ == "__main__":
     print(f"Dashboard → http://localhost:{PORT}")
     print("Press Ctrl-C to stop.\n")
     try:
-        with http.server.HTTPServer(("localhost", PORT), Handler) as httpd:
+        with http.server.HTTPServer(("", PORT), Handler) as httpd:
             httpd.serve_forever()
     except KeyboardInterrupt:
         print("\nStopped.")

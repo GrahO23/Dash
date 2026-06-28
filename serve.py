@@ -11,7 +11,8 @@ from urllib.parse import parse_qs, urlparse
 
 PORT = int(os.getenv("PORT", 8080))
 BASE = Path(__file__).parent
-PYTHON = BASE / ".venv" / "bin" / "python"
+_venv_python = BASE / ".venv" / "bin" / "python"
+PYTHON = _venv_python if _venv_python.exists() else Path(sys.executable)
 
 GUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
 

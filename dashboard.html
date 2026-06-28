@@ -554,7 +554,7 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 let allActivities = [];
 let charts = {};
 
-const RUNNING_TYPES   = new Set(['running','treadmill_running','trail_running']);
+const RUNNING_TYPES   = new Set(['running','treadmill_running','trail_running','track_running']);
 const CYCLING_TYPES   = new Set(['cycling','indoor_cycling','mountain_biking','e_bike_fitness']);
 const STRENGTH_TYPES  = new Set(['strength_training']);
 
@@ -1000,7 +1000,7 @@ function renderRunningCharts(runs) {
     const pClass = ps<=340?'pace-good':ps<=380?'pace-ok':'pace-slow';
     const hClass = (r.averageHR||0)<=135?'hr-low':(r.averageHR||0)<=150?'hr-mid':'hr-high';
     const lk = locKey(r.locationName);
-    const typeLabel = r.activityType==='treadmill_running'?'🏃 Treadmill':r.activityType==='trail_running'?'🌲 Trail':'🏃 Road';
+    const typeLabel = r.activityType==='treadmill_running'?'🏃 Treadmill':r.activityType==='trail_running'?'🌲 Trail':r.activityType==='track_running'?'🏟️ Track':'🏃 Road';
     return `<tr>
       <td>${fmtDate(r.startTimeLocal)}</td>
       <td>${r.locationName?`<span class="badge badge-${lk}">${r.locationName}</span>`:'—'}</td>

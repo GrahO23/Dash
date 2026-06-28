@@ -254,6 +254,7 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
   <div class="tab-panel" id="panel-running">
     <div class="range-bar">
       <span>Range</span>
+      <button class="range-btn" onclick="setRunWeek(this)">This Week</button>
       <button class="range-btn" onclick="setRunRange(1,this)">1 Year</button>
       <button class="range-btn" onclick="setRunRange(2,this)">2 Years</button>
       <button class="range-btn" onclick="setRunRange(5,this)">5 Years</button>
@@ -698,8 +699,23 @@ function setRunRange(years, btn) {
   _runYears = years;
   document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const filtered = filterRuns(_allRuns, years);
-  renderRunningCharts(filtered);
+  renderRunningCharts(filterRuns(_allRuns, years));
+}
+
+function setRunWeek(btn) {
+  _runYears = -1; // sentinel: this-week mode
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const today = new Date();
+  const dow = today.getDay() || 7; // Mon=1 … Sun=7
+  const mon = new Date(today); mon.setDate(today.getDate() - dow + 1);
+  const sun = new Date(mon);   sun.setDate(mon.getDate() + 6);
+  const monStr = mon.toISOString().slice(0,10);
+  const sunStr = sun.toISOString().slice(0,10);
+  renderRunningCharts(_allRuns.filter(r => {
+    const d = r.startTimeLocal.slice(0,10);
+    return d >= monStr && d <= sunStr;
+  }));
 }
 
 function filterRuns(runs, years) {

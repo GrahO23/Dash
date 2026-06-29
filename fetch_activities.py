@@ -18,7 +18,8 @@ load_dotenv(Path(__file__).parent / ".env")
 
 EMAIL    = os.getenv("GARMIN_EMAIL")
 PASSWORD = os.getenv("GARMIN_PASSWORD")
-TOKEN_STORE = str(Path(__file__).parent / ".garmin_tokens")
+DATA = Path(os.getenv("DASH_DATA", Path(__file__).parent))
+TOKEN_STORE = str(DATA / ".garmin_tokens")
 BATCH = 100  # max safe page size
 
 KEEP_FIELDS = [
@@ -96,7 +97,7 @@ def main():
 
     fetched = [slim(a) for a in raw]
 
-    out_path = Path(__file__).parent / "activities.json"
+    out_path = DATA / "activities.json"
 
     # Load existing data and merge — new fetched entries win on conflict
     existing: dict = {}

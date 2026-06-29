@@ -9,6 +9,7 @@ Examples:
 """
 
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -198,7 +199,7 @@ def main():
     if not args:
         sys.exit(__doc__)
 
-    out_dir = Path(__file__).parent
+    out_dir = Path(os.getenv("DASH_DATA", Path(__file__).parent))
     saved = []
 
     for arg in args:

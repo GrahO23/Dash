@@ -11,6 +11,7 @@ from urllib.parse import parse_qs, urlparse
 
 PORT = int(os.getenv("PORT", 8080))
 BASE = Path(__file__).parent
+DATA = Path(os.getenv("DASH_DATA", BASE))  # persistent data dir (overridden to /data in container)
 _venv_python = BASE / ".venv" / "bin" / "python"
 PYTHON = _venv_python if _venv_python.exists() else Path(sys.executable)
 
@@ -85,7 +86,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     # ── Handlers ─────────────────────────────────────────────────────────────
     def _serve_file(self, filename: str, empty=None):
-        f = BASE / filename
+        f = DATA / filename
         if not f.exists():
             if empty is not None:
                 _json_response(self, empty)
@@ -107,7 +108,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         r = _run("fetch_activities.py", arg, timeout=300)
         print(f"  → {r['stdout'][-80:]}")
         if r["ok"]:
-            p = BASE / "activities.json"
+            p = DATA / "activities.json"
             data = json.loads(p.read_text()) if p.exists() else {}
             _json_response(self, {"ok": True, "message": r["stdout"].split("\n")[-1], "data": data})
         else:
@@ -123,7 +124,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         r = _run("fetch_po10.py", guid, timeout=30)
         print(f"  → {r['stdout']}")
         if r["ok"]:
-            f = BASE / f"po10_{guid}.json"
+            f = DATA / f"po10_{guid}.json"
             athlete = json.loads(f.read_text()) if f.exists() else {}
             index = self._read_index()
             _json_response(self, {"ok": True, "athlete": athlete, "athletes": index["athletes"]})
@@ -137,24 +138,24 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         print(f"\n  → Refreshing PO10 {guid} …")
         r = _run("fetch_po10.py", guid, timeout=30)
         if r["ok"]:
-            f = BASE / f"po10_{guid}.json"
+            f = DATA / f"po10_{guid}.json"
             athlete = json.loads(f.read_text()) if f.exists() else {}
             _json_response(self, {"ok": True, "athlete": athlete})
         else:
             _json_response(self, {"ok": False, "error": r["stderr"] or r["stdout"]}, 500)
 
     def _po10_remove(self, guid: str):
-        index_path = BASE / "po10_athletes.json"
+        index_path = DATA / "po10_athletes.json"
         index = self._read_index()
         index["athletes"] = [a for a in index["athletes"] if a["guid"] != guid]
         index_path.write_text(json.dumps(index, indent=2))
-        f = BASE / f"po10_{guid}.json"
+        f = DATA / f"po10_{guid}.json"
         if f.exists():
             f.unlink()
         _json_response(self, {"ok": True, "athletes": index["athletes"]})
 
     def _read_index(self) -> dict:
-        p = BASE / "po10_athletes.json"
+        p = DATA / "po10_athletes.json"
         return json.loads(p.read_text()) if p.exists() else {"athletes": []}
 
 

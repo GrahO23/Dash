@@ -41,10 +41,17 @@ def extract_scalar(src: str, varname: str) -> str | None:
 
 def extract_array(src: str, varname: str) -> list[str]:
     m = re.search(rf"var {re.escape(varname)}\s*=\s*\[([^\]]*)\]", src)
-    if not m:
+    if not m or not m.group(1):
         return []
-    items = re.findall(r"'([^']*)'|(-?\d+\.?\d*)", m.group(1))
-    return [a or b for a, b in items]
+    # Split on commas outside quotes so empty (missing-year) slots keep their
+    # position — a plain findall drops unquoted empty slots and misaligns
+    # this array against its sibling date/label arrays.
+    parts = re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", m.group(1))
+    items = []
+    for p in parts:
+        p = p.strip()
+        items.append(p[1:-1] if p.startswith("'") and p.endswith("'") else p)
+    return items
 
 
 def centisecs_to_str(cs: str) -> str:
@@ -175,12 +182,27 @@ def scrape_athlete(guid: str) -> dict:
         # Sort chronologically
         results.sort(key=lambda r: r["date"] or "")
 
+        # The recent-performances list above is capped and may not reach back
+        # to the race where the all-time PB was actually set. The season-bests
+        # arrays (one entry per year) go further back, so use them to find the
+        # PB date, falling back to the recent-performances list if needed.
+        season_best_values = extract_array(src, f"dataValues{i}")
+        season_best_dates  = extract_array(src, f"dataMeetDates{i}")
+        pb_date = next(
+            (season_best_dates[j] for j, v in enumerate(season_best_values)
+             if v == pb_raw and j < len(season_best_dates)),
+            None,
+        )
+        if not pb_date:
+            pb_date = next((r["date"] for r in results if r["perf_raw"] == pb_raw), None)
+
         events.append({
             "event":    name,
             "code":     code,
             "is_field": is_field,
             "pb_raw":   pb_raw,
             "pb":       pb_display,
+            "pb_date":  pb_date,
             "results":  results,
         })
         print(f"    {name:<15} PB: {pb_display:<10} {len(results)} results")

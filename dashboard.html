@@ -1524,8 +1524,10 @@ function renderPo10Compare() {
     if (!d) return;
     d.events.filter(e=>!e.is_field && e.pb).forEach(e => {
       if (!eventMap[e.code]) eventMap[e.code] = { name: e.event, athletes: [] };
-      const pbResult = e.results.find(r => r.perf_raw === e.pb_raw);
-      const pbDate = pbResult && pbResult.date ? shortDate(pbResult.date.split('/').reverse().join('-')) : '';
+      // pb_date comes from the scraper's season-bests lookup; fall back to
+      // scanning the (capped) recent-performances list for older cached JSON.
+      const rawDate = e.pb_date || (e.results.find(r => r.perf_raw === e.pb_raw) || {}).date;
+      const pbDate = rawDate ? shortDate(rawDate.split('/').reverse().join('-')) : '';
       eventMap[e.code].athletes.push({ name: a.name, pb: e.pb, pb_raw: e.pb_raw, pb_date: pbDate, color: PO10_COLORS[ai] });
     });
   });

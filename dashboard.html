@@ -166,6 +166,8 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
 .compare-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; font-size:12px; }
 .compare-row .cr-name { color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100px; }
 .compare-row .cr-pb { font-weight:700; }
+.cr-pb-wrap { display:flex; align-items:baseline; gap:6px; flex-shrink:0; }
+.cr-pb-date { font-size:10px; color:var(--muted); font-weight:500; white-space:nowrap; }
 .cr-best { color:var(--accent); }
 
 /* SETTINGS */
@@ -537,8 +539,28 @@ tbody td { padding:10px 14px; font-size:12px; white-space:nowrap; }
       <div class="compare-grid" id="po10-compare-grid"></div>
       <div class="charts-grid full" style="margin-top:4px">
         <div class="chart-card">
-          <div class="chart-title"><span class="dot" style="background:var(--accent)"></span>5K Progress Comparison</div>
+          <div class="chart-title-row">
+            <div class="chart-title"><span class="dot" style="background:var(--accent)"></span>5K Progress Comparison</div>
+            <div class="toggle-group">
+              <button class="toggle-btn" onclick="setPo10CompareZoom('5K',1,this)">Year</button>
+              <button class="toggle-btn" onclick="setPo10CompareZoom('5K',5,this)">5 Years</button>
+              <button class="toggle-btn active" onclick="setPo10CompareZoom('5K',0,this)">All Time</button>
+            </div>
+          </div>
           <div class="chart-wrap tall"><canvas id="po10-compare-5k"></canvas></div>
+        </div>
+      </div>
+      <div class="charts-grid full" style="margin-top:4px">
+        <div class="chart-card">
+          <div class="chart-title-row">
+            <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>10K Progression Comparison</div>
+            <div class="toggle-group">
+              <button class="toggle-btn" onclick="setPo10CompareZoom('10K',1,this)">Year</button>
+              <button class="toggle-btn" onclick="setPo10CompareZoom('10K',5,this)">5 Years</button>
+              <button class="toggle-btn active" onclick="setPo10CompareZoom('10K',0,this)">All Time</button>
+            </div>
+          </div>
+          <div class="chart-wrap tall"><canvas id="po10-compare-10k"></canvas></div>
         </div>
       </div>
     </div>
@@ -1502,7 +1524,9 @@ function renderPo10Compare() {
     if (!d) return;
     d.events.filter(e=>!e.is_field && e.pb).forEach(e => {
       if (!eventMap[e.code]) eventMap[e.code] = { name: e.event, athletes: [] };
-      eventMap[e.code].athletes.push({ name: a.name, pb: e.pb, pb_raw: e.pb_raw, color: PO10_COLORS[ai] });
+      const pbResult = e.results.find(r => r.perf_raw === e.pb_raw);
+      const pbDate = pbResult && pbResult.date ? shortDate(pbResult.date.split('/').reverse().join('-')) : '';
+      eventMap[e.code].athletes.push({ name: a.name, pb: e.pb, pb_raw: e.pb_raw, pb_date: pbDate, color: PO10_COLORS[ai] });
     });
   });
 
@@ -1516,33 +1540,60 @@ function renderPo10Compare() {
         ${sorted.map((a,i) => `
           <div class="compare-row">
             <span class="cr-name" style="color:${a.color}">${a.name}</span>
-            <span class="cr-pb ${i===0?'cr-best':''}">${a.pb}</span>
+            <span class="cr-pb-wrap">
+              <span class="cr-pb ${i===0?'cr-best':''}">${a.pb}</span>
+              ${a.pb_date ? `<span class="cr-pb-date">${a.pb_date}</span>` : ''}
+            </span>
           </div>`).join('')}
       </div>`;
     }).join('');
 
-  // 5K comparison chart
-  const fiveK = eventMap['5K'];
-  if (!fiveK) return;
+  // Progress-over-time comparison charts (zoomable)
+  renderPo10CompareChart('5K', 'po10-compare-5k');
+  renderPo10CompareChart('10K', 'po10-compare-10k');
+}
+
+let _po10CompareYears = { '5K': 0, '10K': 0 }; // 0 = all time
+
+function setPo10CompareZoom(code, years, btn) {
+  _po10CompareYears[code] = years;
+  btn.closest('.toggle-group').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPo10CompareChart(code, code === '5K' ? 'po10-compare-5k' : 'po10-compare-10k');
+}
+
+function renderPo10CompareChart(code, canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const years = _po10CompareYears[code] || 0;
+  let cutoff = null;
+  if (years > 0) {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - years);
+    cutoff = d.toISOString().slice(0,10);
+  }
   const datasets = po10Athletes.map((a, ai) => {
     const d = po10Data[a.guid];
     if (!d) return null;
-    const ev = d.events.find(e => e.code === '5K');
+    const ev = d.events.find(e => e.code === code);
     if (!ev) return null;
     // Convert DD/MM/YYYY → YYYY-MM-DD before sorting
     const pts = ev.results
       .map(r => ({ x: r.date ? r.date.split('/').reverse().join('-') : null, y: csToMins(r.perf_raw) }))
-      .filter(p => p.x && p.y)
+      .filter(p => p.x && p.y && (!cutoff || p.x >= cutoff))
       .sort((a,b) => a.x.localeCompare(b.x));
-    return {
+    return pts.length ? {
       label: a.name,
       data: pts,
       borderColor: PO10_COLORS[ai], backgroundColor: 'transparent',
       borderWidth: 2, pointRadius: 4, tension:.3,
-    };
+    } : null;
   }).filter(Boolean);
 
-  mk('po10-compare-5k', {
+  canvas.closest('.chart-card').style.display = datasets.length ? '' : 'none';
+  if (!datasets.length) return;
+
+  mk(canvasId, {
     type: 'line',
     data: { datasets },
     options: {
